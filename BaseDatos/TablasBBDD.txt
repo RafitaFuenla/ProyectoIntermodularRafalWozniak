@@ -1,7 +1,58 @@
-TABLAS BBDD
+TABLAS BBDD "BoxRanger"
 
-Socios: idSocio, nombre, apellidos, DNI, email, teléfono, fecha_alta, fecha_baja
-Entrenadores: idEntrenador, nombre, apellidos, DNI, email, teléfono, especialidad
-Clases: idClase, idEntrenador (FK), nombre, hora_inicio, hora_fin, max_atletas, 
-Inscripciones: idSocio (FK), idClase (FK), fecha_inscripcion
-Pagos: idPago, idSocio (FK), cuota, fecha_pago, estado
+Entrenadores
+	• idEntrenador (PK)
+	• nombre
+	• apellidos
+	• DNI (UNIQUE)
+	• email (UNIQUE)
+	• telefono
+	• especialidad
+
+Socios
+	• idSocio (PK)
+	• nombre
+	• apellidos
+	• DNI (UNIQUE)
+	• email (UNIQUE)
+	• telefono
+	• fecha_alta
+	• fecha_baja
+
+Clases
+	• idClase (PK)
+	• nombre
+	• hora_inicio
+	• hora_fin
+	• max_atletas
+	• idEntrenador (FK → Entrenadores.idEntrenador)
+
+	Relación:
+	•1 Entrenador → N Clases
+
+
+Pagos
+	• idPago (PK)
+	• cuota
+	• fecha_pago
+	• estado
+	• idSocio (FK → Socios.idSocio)
+
+	Relación:
+	• 1 Socio → N Pagos
+
+
+Inscripciones
+	• idSocio (FK → Socios.idSocio)
+	• idClase (FK → Clases.idClase)
+	• fecha_inscripcion
+	• PK compuesta (idSocio, idClase)
+
+	Relación:
+	• N Socios ↔ N Clases
+
+
+RESUMEN DE RELACIONES:
+	• Entrenadores 1:N Clases
+	• Socios 1:N Pagos
+	• Socios N:M Clases (tabla intermedia: Inscripciones)
