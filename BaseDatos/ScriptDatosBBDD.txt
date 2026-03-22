@@ -1,0 +1,39 @@
+INSERT INTO Entrenadores (nombre, apellidos, DNI, email, telefono, especialidad) VALUES
+('Carlos','Gómez Ruiz','12345678A','carlos@gmail.com','600111222','CrossFit'),
+('Laura','Martín López','23456789B','laura@gmail.com','600222333','Halterofilia'),
+('David','Sánchez Pérez','34567890C','david@gmail.com','600333444','Resistencia'),
+('Marta','Fernández Díaz','45678901D','marta@gmail.com','600444555','Movilidad'),
+('Jorge','Ruiz Moreno','56789012E','jorge@gmail.com','600555666','CrossFit');
+
+INSERT INTO Socios (nombre, apellidos, DNI, email, telefono, fecha_alta, fecha_baja) VALUES
+('Ana','López García','11111111A','ana@gmail.com','611111111','2025-01-10',NULL),
+('Luis','Pérez Martín','22222222B','luis@gmail.com','622222222','2025-02-15',NULL),
+('Sofía','Ramírez Torres','33333333C','sofia@gmail.com','633333333','2025-03-01',NULL),
+('Pedro','Gómez Sánchez','44444444D','pedro@gmail.com','644444444','2025-01-20',NULL),
+('Lucía','Fernández Ruiz','55555555E','lucia@gmail.com','655555555','2025-02-10',NULL),
+('Mario','Díaz López','66666666F','mario@gmail.com','666666666','2025-03-05',NULL);
+
+INSERT INTO Clases (idEntrenador, nombre, hora_inicio, hora_fin, max_atletas) VALUES
+(1,'WOD Mañana','09:00:00','10:00:00',15),
+(2,'Halterofilia','10:00:00','11:00:00',12),
+(3,'Resistencia','18:00:00','19:00:00',20),
+(4,'Movilidad','19:00:00','20:00:00',10),
+(5,'WOD Tarde','20:00:00','21:00:00',15);
+
+INSERT INTO Pagos (idSocio, cuota, fecha_pago, estado) VALUES
+(1,50.00,'2025-03-01','pagado'),
+(2,50.00,'2025-03-01','pagado'),
+(3,50.00,'2025-03-02','pendiente'),
+(4,50.00,'2025-03-03','pagado'),
+(5,50.00,'2025-03-04','fallido'),
+(6,50.00,'2025-03-05','pagado');
+
+INSERT INTO Inscripciones (idSocio, idClase, fecha_inscripcion) VALUES
+(1,1,'2025-03-01'),
+(1,3,'2025-03-01'),
+(2,2,'2025-03-02'),
+(3,3,'2025-03-02'),
+(4,1,'2025-03-03'),
+(5,4,'2025-03-03'),
+(6,5,'2025-03-04'),
+(2,5,'2025-03-04');

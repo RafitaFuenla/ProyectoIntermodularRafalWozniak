@@ -1,0 +1,59 @@
+CREATE DATABASE BoxRanger;
+USE BoxRanger;
+
+CREATE TABLE Entrenadores (
+    idEntrenador INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(30) NOT NULL,
+    apellidos VARCHAR(50) NOT NULL,
+    DNI VARCHAR(9) UNIQUE NOT NULL,
+    email VARCHAR(50) UNIQUE,
+    telefono VARCHAR(15),
+    especialidad VARCHAR(30)
+);
+
+CREATE TABLE Socios (
+    idSocio INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(30) NOT NULL,
+    apellidos VARCHAR(50) NOT NULL,
+    DNI VARCHAR(9) UNIQUE NOT NULL,
+    email VARCHAR(50) UNIQUE,
+    telefono VARCHAR(15),
+    fecha_alta DATE NOT NULL,
+    fecha_baja DATE
+);
+
+CREATE TABLE Clases (
+    idClase INT PRIMARY KEY AUTO_INCREMENT,
+    idEntrenador INT NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    hora_inicio TIME NOT NULL,
+    hora_fin TIME NOT NULL,
+    max_atletas INT,
+    FOREIGN KEY (idEntrenador) REFERENCES Entrenadores(idEntrenador)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE Pagos (
+    idPago INT PRIMARY KEY AUTO_INCREMENT,
+    idSocio INT NOT NULL,
+    cuota DECIMAL(6,2) NOT NULL,
+    fecha_pago DATE NOT NULL,
+    estado ENUM('pagado', 'pendiente', 'fallido') NOT NULL,
+    FOREIGN KEY (idSocio) REFERENCES Socios(idSocio)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE Inscripciones (
+    idSocio INT NOT NULL,
+    idClase INT NOT NULL,
+    fecha_inscripcion DATE NOT NULL,
+    PRIMARY KEY (idSocio, idClase),
+    FOREIGN KEY (idSocio) REFERENCES Socios(idSocio)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (idClase) REFERENCES Clases(idClase)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
