@@ -1,31 +1,29 @@
 package com.boxranger.boxranger.modelo;
 
-public class Entrenador {
+public class Socio {
 
-    private  int idEntrenador;
-    private  String nombre, apellidos, DNI, email, telefono, especialidad;
+    private int idSocio;
+    private String nombre, apellidos, DNI, email, telefono, fecha_alta, fecha_baja;
 
-
-
-    public Entrenador() {
-
+    public Socio() {
     }
 
-    public Entrenador(int idEntrenador, String nombre, String apellidos, String DNI, String email, String telefono, String especialidad) {
-        this.idEntrenador = idEntrenador;
+    public Socio(int idSocio, String nombre, String apellidos, String DNI, String email, String telefono, String fecha_alta, String fecha_baja) {
+        this.idSocio = idSocio;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.DNI = DNI;
         this.email = email;
         this.telefono = telefono;
-        this.especialidad = especialidad;
+        this.fecha_alta = fecha_alta;
+        this.fecha_baja = fecha_baja;
     }
 
-    public int getIdEntrenador() {
-        return idEntrenador;
+    public int getIdSocio() {
+        return idSocio;
     }
-    public void setIdEntrenador(int idEntrenador) {
-        this.idEntrenador = idEntrenador;
+    public void setIdSocio(int idSocio) {
+        this.idSocio = idSocio;
     }
     public String getNombre() {
         return nombre;
@@ -57,16 +55,16 @@ public class Entrenador {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    public String getEspecialidad() {
-        return especialidad;
+    public String getFecha_alta() {
+        return fecha_alta;
     }
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
+    public void setFecha_alta(String fecha_alta) {
+        this.fecha_alta = fecha_alta;
     }
-
-
-
-
-
-
+    public String getFecha_baja() {
+        return fecha_baja;
+    }
+    public void setFecha_baja(String fecha_baja) {
+        this.fecha_baja = fecha_baja;
+    }
 }
