@@ -1,0 +1,7 @@
+TABLAS BBDD
+
+Socios: idSocio, nombre, apellidos, DNI, email, teléfono, fecha_alta, fecha_baja
+Entrenadores: idEntrenador, nombre, apellidos, DNI, email, teléfono, especialidad
+Clases: idClase, idEntrenador (FK), nombre, hora_inicio, hora_fin, max_atletas, 
+Inscripciones: idSocio (FK), idClase (FK), fecha_inscripcion
+Pagos: idPago, idSocio (FK), cuota, fecha_pago, estado
