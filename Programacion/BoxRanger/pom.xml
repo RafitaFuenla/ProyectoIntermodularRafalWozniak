@@ -68,7 +68,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.boxranger.boxranger/com.boxranger.boxranger.HelloApplication</mainClass>
+                            <mainClass>com.boxranger.boxranger/com.boxranger.boxranger.BoxRangerApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

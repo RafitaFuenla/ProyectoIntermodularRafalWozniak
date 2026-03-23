@@ -3,7 +3,7 @@ package com.boxranger.boxranger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class BoxRangerController {
     @FXML
     private Label welcomeText;
 

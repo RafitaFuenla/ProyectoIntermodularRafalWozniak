@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.boxranger.boxranger.BoxRangerController">
+   <center>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="TOP_CENTER" text="BoxRanger" textAlignment="CENTER">
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnSocios" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Socios" textAlignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Blend />
+               </effect>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnEntrenadores" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Entrenadores">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnClases" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Clases">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnPagos" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Pagos">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+         <padding>
+            <Insets top="60.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>
