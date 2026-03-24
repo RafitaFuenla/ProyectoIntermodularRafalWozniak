@@ -8,81 +8,96 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.boxranger.boxranger.BoxRangerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0"
+            prefWidth="350.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.boxranger.boxranger.BoxRangerController">
     <center>
-        <VBox alignment="TOP_CENTER" prefHeight="481.0" prefWidth="350.0" spacing="25.0" style="-fx-background-color: #18310e; -fx-border-color: black;" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER" prefHeight="481.0" prefWidth="350.0" spacing="25.0"
+              style="-fx-background-color: #18310e; -fx-border-color: black;" BorderPane.alignment="CENTER">
             <children>
-            <ImageView fitHeight="87.0" fitWidth="332.0" pickOnBounds="true">
-               <image>
-                  <Image url="@img/logoPrincipal.png" />
-               </image>
-            </ImageView>
-                <Button fx:id="btnSocios" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#abrirSocios" prefHeight="18.0" prefWidth="176.0" style="-fx-background-color: transparent; -fx-padding: 0;" textAlignment="CENTER" textFill="#e1ff00">
+                <ImageView fitHeight="87.0" fitWidth="332.0" pickOnBounds="true">
+                    <image>
+                        <Image url="@img/logoPrincipal.png"/>
+                    </image>
+                </ImageView>
+                <Button fx:id="btnSocios" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity"
+                        mnemonicParsing="false" onAction="#abrirSocios" prefHeight="18.0" prefWidth="176.0"
+                        style="-fx-background-color: transparent; -fx-padding: 0;" textAlignment="CENTER"
+                        textFill="#e1ff00">
                     <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="HAND"/>
                     </cursor>
                     <VBox.margin>
-                        <Insets />
+                        <Insets/>
                     </VBox.margin>
-               <graphic>
-                  <ImageView fx:id="btnSocios" fitHeight="35.0" fitWidth="169.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@img/buttonSocios.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-               </graphic>
+                    <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="169.0" pickOnBounds="true">
+                            <image>
+                                <Image url="@img/buttonSocios.png"/>
+                            </image>
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </ImageView>
+                    </graphic>
                 </Button>
-            <Button fx:id="btnEntrenadores" contentDisplay="TOP" layoutX="97.0" layoutY="183.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#abrirEntrenadores" prefHeight="18.0" prefWidth="176.0" style="-fx-background-color: transparent; -fx-padding: 0;" textAlignment="CENTER" textFill="#e1ff00">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="169.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@img/buttonEntrenadores.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="btnClases" contentDisplay="TOP" layoutX="97.0" layoutY="263.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#abrirClases" prefHeight="18.0" prefWidth="176.0" style="-fx-background-color: transparent; -fx-padding: 0;" textAlignment="CENTER" textFill="#e1ff00">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="169.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@img/buttonClases.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="btnPagos" contentDisplay="TOP" layoutX="97.0" layoutY="342.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#abrirPagos" prefHeight="18.0" prefWidth="176.0" style="-fx-background-color: transparent; -fx-padding: 0;" textAlignment="CENTER" textFill="#e1ff00">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="169.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@img/buttonPagos.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-               </graphic>
-            </Button>
+                <Button fx:id="btnEntrenadores" contentDisplay="TOP" layoutX="97.0" layoutY="183.0"
+                        maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#abrirEntrenadores"
+                        prefHeight="18.0" prefWidth="176.0" style="-fx-background-color: transparent; -fx-padding: 0;"
+                        textAlignment="CENTER" textFill="#e1ff00">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="169.0" pickOnBounds="true">
+                            <image>
+                                <Image url="@img/buttonEntrenadores.png"/>
+                            </image>
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="btnClases" contentDisplay="TOP" layoutX="97.0" layoutY="263.0" maxHeight="-Infinity"
+                        maxWidth="-Infinity" mnemonicParsing="false" onAction="#abrirClases" prefHeight="18.0"
+                        prefWidth="176.0" style="-fx-background-color: transparent; -fx-padding: 0;"
+                        textAlignment="CENTER" textFill="#e1ff00">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="169.0" pickOnBounds="true">
+                            <image>
+                                <Image url="@img/buttonClases.png"/>
+                            </image>
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="btnPagos" contentDisplay="TOP" layoutX="97.0" layoutY="342.0" maxHeight="-Infinity"
+                        maxWidth="-Infinity" mnemonicParsing="false" onAction="#abrirPagos" prefHeight="18.0"
+                        prefWidth="176.0" style="-fx-background-color: transparent; -fx-padding: 0;"
+                        textAlignment="CENTER" textFill="#e1ff00">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="169.0" pickOnBounds="true">
+                            <image>
+                                <Image url="@img/buttonPagos.png"/>
+                            </image>
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </ImageView>
+                    </graphic>
+                </Button>
             </children>
             <padding>
-                <Insets top="60.0" />
+                <Insets top="60.0"/>
             </padding>
         </VBox>
     </center>

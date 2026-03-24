@@ -16,9 +16,9 @@ public class BoxRangerController {
     @FXML
     private void abrirSocios(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Socios-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/boxranger/boxranger/Socios-view.fxml"));
             Parent root = loader.load();
-            Stage stage = new Stage();
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -33,9 +33,9 @@ public class BoxRangerController {
     @FXML
     private void abrirEntrenadores(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Entrenadores-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/boxranger/boxranger/Entrenadores-view.fxml"));
             Parent root = loader.load();
-            Stage stage = new Stage();
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -50,9 +50,9 @@ public class BoxRangerController {
     @FXML
     private void abrirClases(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Clases-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/boxranger/boxranger/Clases-view.fxml"));
             Parent root = loader.load();
-            Stage stage = new Stage();
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -67,9 +67,9 @@ public class BoxRangerController {
     @FXML
     private void abrirPagos(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Pagos-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/boxranger/boxranger/Pagos-view.fxml"));
             Parent root = loader.load();
-            Stage stage = new Stage();
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {

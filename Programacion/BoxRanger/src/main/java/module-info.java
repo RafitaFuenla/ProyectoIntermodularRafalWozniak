@@ -3,7 +3,8 @@ module com.boxranger.boxranger {
     requires javafx.fxml;
     requires java.sql;
 
-
     opens com.boxranger.boxranger to javafx.fxml;
     exports com.boxranger.boxranger;
+    opens com.boxranger.boxranger.controller to javafx.fxml;
+    exports com.boxranger.boxranger.controller;
 }
