@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.boxranger.boxranger.controller.SociosController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="388.0" style="-fx-background-color: #18310e;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.boxranger.boxranger.controller.SociosController">
     <top>
         <VBox alignment="TOP_CENTER" prefWidth="350.0" spacing="5.0" style="-fx-background-color: #18310e; -fx-border-color: black;" BorderPane.alignment="CENTER">
             <children>
@@ -20,20 +20,23 @@
                         <Image url="@img/logoPrincipal.png" />
                     </image>
                     <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets top="10.0" />
                     </VBox.margin>
                 </ImageView>
                 <ImageView fitHeight="28.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@img/tituloSocios.png" />
                     </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
                 </ImageView>
 
             </children>
         </VBox>
     </top>
     <bottom>
-        <Button mnemonicParsing="false" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
+        <Button mnemonicParsing="false" onAction="#volverAlMenu" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
             <graphic>
                 <ImageView fitHeight="41.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -49,36 +52,51 @@
     <center>
         <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" BorderPane.alignment="TOP_LEFT">
             <children>
-                <TableView id="tablaSocios" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tablaSocios" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colIdSocio" prefWidth="75.0" text="idSocio" />
-                        <TableColumn fx:id="colNombre" prefWidth="75.0" text="Nombre" />
-                        <TableColumn fx:id="colApellidos" prefWidth="75.0" text="Apellidos" />
-                        <TableColumn fx:id="colDNI" prefWidth="75.0" text="DNI" />
-                        <TableColumn fx:id="colEmail" prefWidth="75.0" text="Email" />
-                        <TableColumn fx:id="colTelefono" prefWidth="75.0" text="Telefono" />
-                        <TableColumn fx:id="colFecha_alta" prefWidth="75.0" text="Alta" />
+                        <TableColumn fx:id="colIdSocio" prefWidth="45.0" text="idSocio" />
+                        <TableColumn fx:id="colNombre" prefWidth="62.0" text="Nombre" />
+                        <TableColumn fx:id="colApellidos" prefWidth="65.0" text="Apellidos" />
+                        <TableColumn fx:id="colDNI" prefWidth="57.0" text="DNI" />
+                        <TableColumn fx:id="colEmail" prefWidth="63.0" text="Email" />
+                        <TableColumn fx:id="colTelefono" prefWidth="57.0" text="Telefono" />
+                        <TableColumn fx:id="colFecha_alta" prefWidth="176.0" text="Alta" />
                         <TableColumn fx:id="colFecha_baja" prefWidth="75.0" text="Baja" />
                     </columns>
                 </TableView>
-                <HBox prefHeight="48.0" prefWidth="350.0">
+                <HBox prefHeight="32.0" prefWidth="343.0">
                     <children>
-                        <TextField />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
+                        <TextField fx:id="txtNombre" promptText="Nombre" style="-fx-background-color: #dce8d5;">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin></TextField>
+                        <TextField fx:id="txtApellidos" promptText="Apellidos" style="-fx-background-color: #dce8d5;" />
+                        <TextField fx:id="txtDNI" promptText="DNI" style="-fx-background-color: #dce8d5;">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin></TextField>
                     </children>
                 </HBox>
                 <HBox layoutX="10.0" layoutY="244.0" prefHeight="28.0" prefWidth="350.0" style="-fx-background-color: transparent;">
                     <children>
-                        <TextField />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="10.0" layoutY="10.0" />
-                        <TextField layoutX="127.0" layoutY="10.0" />
+                        <TextField fx:id="txtEmail" promptText="Email" style="-fx-background-color: #dce8d5;">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin></TextField>
+                        <TextField fx:id="txtTelefono" promptText="Teléfono" style="-fx-background-color: #dce8d5;" />
+                        <TextField fx:id="txtFechaAlta" promptText="Fecha Alta" style="-fx-background-color: #dce8d5;">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin></TextField>
+                        <TextField fx:id="txtFechaBaja" promptText="Fecha Baja" style="-fx-background-color: #dce8d5;">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="5.0" right="5.0" />
+                     </HBox.margin></TextField>
                     </children>
                 </HBox>
                 <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="350.0">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="9.0" prefWidth="97.0" style="-fx-background-color: transparent;">
+                        <Button fx:id="btnAnadir" mnemonicParsing="false" onAction="#anadir" prefHeight="9.0" prefWidth="97.0" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="40.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -87,7 +105,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
+                        <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="40.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -96,7 +114,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
+                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="40.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
