@@ -55,14 +55,17 @@
                 <TableView fx:id="tablaSocios" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="colIdSocio" prefWidth="45.0" text="idSocio" />
-                        <TableColumn fx:id="colNombre" prefWidth="62.0" text="Nombre" />
-                        <TableColumn fx:id="colApellidos" prefWidth="65.0" text="Apellidos" />
+                        <TableColumn fx:id="colNombre" prefWidth="56.0" text="Nombre" />
+                        <TableColumn fx:id="colApellidos" prefWidth="71.0" text="Apellidos" />
                         <TableColumn fx:id="colDNI" prefWidth="57.0" text="DNI" />
-                        <TableColumn fx:id="colEmail" prefWidth="63.0" text="Email" />
-                        <TableColumn fx:id="colTelefono" prefWidth="57.0" text="Telefono" />
-                        <TableColumn fx:id="colFecha_alta" prefWidth="176.0" text="Alta" />
-                        <TableColumn fx:id="colFecha_baja" prefWidth="75.0" text="Baja" />
+                        <TableColumn fx:id="colEmail" prefWidth="55.0" text="Email" />
+                        <TableColumn fx:id="colTelefono" prefWidth="56.0" text="Telefono" />
+                        <TableColumn fx:id="colFecha_alta" prefWidth="45.0" text="Alta" />
+                        <TableColumn fx:id="colFecha_baja" prefWidth="215.0" text="Baja" />
                     </columns>
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
                 </TableView>
                 <HBox prefHeight="32.0" prefWidth="343.0">
                     <children>
