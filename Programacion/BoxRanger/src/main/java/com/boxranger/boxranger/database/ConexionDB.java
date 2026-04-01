@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConexionDB {
 
-    private static final String url = "jdbc:mysql://localhost:8012/BoxRanger";
+    private static final String url = "jdbc:mysql://127.0.0.1:3306/BoxRanger?useSSL=false&serverTimezone=UTC";
     private static final String usuario = "root";
     private static final String contrasena = "";
 

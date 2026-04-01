@@ -11,14 +11,12 @@ import java.util.List;
 
 public class SocioDAO {
 
-
-
     public List<Socio> listarSocios() {
         List<Socio> lista = new ArrayList<>();
         String sql = "SELECT * FROM Socios";
 
         try {
-            Connection con = ConexionDB.getConexion(); 
+            Connection con = ConexionDB.getConexion();
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 

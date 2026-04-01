@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntrenadorDAO {
+
     public List<Entrenador> listarEntrenadores() {
         List<Entrenador> lista = new ArrayList<>();
         String sql = "SELECT * FROM Entrenadores";
@@ -24,10 +25,11 @@ public class EntrenadorDAO {
                         rs.getInt("idEntrenador"),
                         rs.getString("nombre"),
                         rs.getString("apellidos"),
+                        rs.getString("especialidad"),
                         rs.getString("DNI"),
                         rs.getString("email"),
-                        rs.getString("telefono"),
-                        rs.getString("especialidad")
+                        rs.getString("telefono")
+
                 );
                 lista.add(e);
             }
@@ -46,10 +48,11 @@ public class EntrenadorDAO {
 
             ps.setString(1, entrenador.getNombre());
             ps.setString(2, entrenador.getApellidos());
+            ps.setString(6, entrenador.getEspecialidad());
             ps.setString(3, entrenador.getDNI());
             ps.setString(4, entrenador.getEmail());
             ps.setString(5, entrenador.getTelefono());
-            ps.setString(6, entrenador.getEspecialidad());
+
 
             int rs = ps.executeUpdate();
 
