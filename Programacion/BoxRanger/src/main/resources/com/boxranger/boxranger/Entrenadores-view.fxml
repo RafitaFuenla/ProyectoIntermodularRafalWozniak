@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="388.0" style="-fx-background-color: #18310e;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.boxranger.boxranger.controller.SociosController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" style="-fx-background-color: #18310e;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.boxranger.boxranger.controller.EntrenadoresController">
     <top>
         <VBox alignment="TOP_CENTER" prefWidth="350.0" spacing="5.0" style="-fx-background-color: #18310e; -fx-border-color: black;" BorderPane.alignment="CENTER">
             <children>
@@ -50,15 +50,15 @@
     <center>
         <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0" BorderPane.alignment="TOP_LEFT">
             <children>
-                <TableView fx:id="tablaSocios" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                <TableView id="tablaEntrenadores" fx:id="tablaEntrenadores" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colIdSocio" prefWidth="26.0" text="id" />
-                        <TableColumn fx:id="colNombre" prefWidth="55.0" text="Nombre" />
-                        <TableColumn fx:id="colApellidos" prefWidth="67.0" text="Apellidos" />
-                  <TableColumn fx:id="colApellidos1" prefWidth="81.0" text="Especialidad" />
-                        <TableColumn fx:id="colDNI" prefWidth="49.0" text="DNI" />
-                        <TableColumn fx:id="colEmail" prefWidth="42.0" text="Email" />
-                        <TableColumn fx:id="colTelefono" prefWidth="57.0" text="Telefono" />
+                        <TableColumn id="id" fx:id="colIdEntrenador" prefWidth="26.0" text="id" />
+                        <TableColumn id="nombre" fx:id="colNombre" prefWidth="55.0" text="Nombre" />
+                        <TableColumn id="apellidos" fx:id="colApellidos" prefWidth="67.0" text="Apellidos" />
+                        <TableColumn id="especialidad" fx:id="colEspecialidad" prefWidth="81.0" text="Especialidad" />
+                        <TableColumn id="DNI" fx:id="colDNI" prefWidth="49.0" text="DNI" />
+                        <TableColumn id="email" fx:id="colEmail" prefWidth="42.0" text="Email" />
+                        <TableColumn id="telefono" fx:id="colTelefono" prefWidth="57.0" text="Telefono" />
                     </columns>
                     <VBox.margin>
                         <Insets left="5.0" right="5.0" />
