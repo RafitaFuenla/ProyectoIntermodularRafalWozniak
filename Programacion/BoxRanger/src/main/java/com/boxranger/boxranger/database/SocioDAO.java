@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,6 @@ public class SocioDAO {
                         rs.getString("fecha_alta"),
                         rs.getString("fecha_baja")
                 );
-
                 lista.add(s);
             }
 
@@ -54,8 +54,18 @@ public class SocioDAO {
             ps.setString(3, socio.getDNI());
             ps.setString(4, socio.getEmail());
             ps.setString(5, socio.getTelefono());
-            ps.setString(6, socio.getFecha_alta());
-            ps.setString(7, socio.getFecha_baja());
+
+            if (socio.getFecha_alta() == null || socio.getFecha_alta().isBlank()) {
+                throw new SQLException("La fecha de alta es obligatoria");
+            } else {
+                ps.setString(6, socio.getFecha_alta());
+            }
+
+            if (socio.getFecha_baja() == null || socio.getFecha_baja().isBlank()) {
+                ps.setNull(7, Types.DATE);
+            } else {
+                ps.setString(7, socio.getFecha_baja());
+            }
 
             ps.executeUpdate();
 
@@ -72,7 +82,6 @@ public class SocioDAO {
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setInt(1, socio.getIdSocio());
-
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -92,10 +101,20 @@ public class SocioDAO {
             ps.setString(3, socio.getDNI());
             ps.setString(4, socio.getEmail());
             ps.setString(5, socio.getTelefono());
-            ps.setString(6, socio.getFecha_alta());
-            ps.setString(7, socio.getFecha_baja());
-            ps.setInt(8, socio.getIdSocio());
 
+            if (socio.getFecha_alta() == null || socio.getFecha_alta().isBlank()) {
+                throw new SQLException("La fecha de alta es obligatoria");
+            } else {
+                ps.setString(6, socio.getFecha_alta());
+            }
+
+            if (socio.getFecha_baja() == null || socio.getFecha_baja().isBlank()) {
+                ps.setNull(7, Types.DATE);
+            } else {
+                ps.setString(7, socio.getFecha_baja());
+            }
+
+            ps.setInt(8, socio.getIdSocio());
             ps.executeUpdate();
 
         } catch (SQLException e) {
