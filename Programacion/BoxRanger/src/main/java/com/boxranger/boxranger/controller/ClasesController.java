@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
+
 /**
  * Controlador de la pantalla de visualización de clases.
  * Esta pantalla es de solo lectura — permite consultar las clases
@@ -79,11 +81,14 @@ public class ClasesController {
                     FXCollections.observableArrayList(claseDAO.listarClases());
             tablaClases.setItems(lista);
         } catch (RuntimeException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("No se pudieron cargar las clases");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            // Platform.runLater para no bloquear el FXMLLoader si el error ocurre durante initialize()
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("No se pudieron cargar las clases");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            });
         }
     }
 

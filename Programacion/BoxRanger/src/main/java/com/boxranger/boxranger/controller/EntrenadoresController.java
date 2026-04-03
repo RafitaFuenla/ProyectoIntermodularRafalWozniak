@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
+
 /**
  * Controlador de la pantalla de visualización de entrenadores.
  * Esta pantalla es de solo lectura — permite consultar los entrenadores
@@ -84,11 +86,14 @@ public class EntrenadoresController {
                     FXCollections.observableArrayList(entrenadorDAO.listarEntrenadores());
             tablaEntrenadores.setItems(lista);
         } catch (RuntimeException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("No se pudieron cargar los entrenadores");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            // Platform.runLater para no bloquear el FXMLLoader si el error ocurre durante initialize()
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("No se pudieron cargar los entrenadores");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            });
         }
     }
 

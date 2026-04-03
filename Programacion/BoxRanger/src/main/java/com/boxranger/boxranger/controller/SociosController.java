@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import javafx.application.Platform;
+
 /**
  * Controlador de la pantalla de gestión de socios.
  * Gestiona el CRUD completo de socios: listar, añadir, editar y eliminar.
@@ -139,7 +141,8 @@ public class SociosController {
                     FXCollections.observableArrayList(socioDAO.listarSocios());
             tablaSocios.setItems(lista);
         } catch (RuntimeException e) {
-            mostrarError("No se pudieron cargar los socios: " + e.getMessage());
+            // Platform.runLater para no bloquear el FXMLLoader si el error ocurre durante initialize()
+            Platform.runLater(() -> mostrarError("No se pudieron cargar los socios: " + e.getMessage()));
         }
     }
 
