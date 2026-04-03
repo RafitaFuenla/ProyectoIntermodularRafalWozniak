@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- Vista de la pantalla de Pagos -->
+<!-- Controlador: PagosController -->
+<!-- Pantalla de solo visualización: muestra el listado de pagos de los socios -->
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -10,10 +16,13 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0"
             prefWidth="350.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.boxranger.boxranger.controller.PagosController">
+
+    <!-- Zona superior: logo y título de la sección -->
     <top>
-        <VBox alignment="TOP_CENTER" prefHeight="510.0" prefWidth="350.0" spacing="5.0"
+        <VBox alignment="TOP_CENTER" prefWidth="350.0" spacing="5.0"
               style="-fx-background-color: #18310e; -fx-border-color: black;" BorderPane.alignment="CENTER">
             <children>
+                <!-- Logo principal de BoxRanger -->
                 <ImageView fitHeight="70.0" fitWidth="332.0" pickOnBounds="true">
                     <image>
                         <Image url="@img/logoPrincipal.png"/>
@@ -22,15 +31,46 @@
                         <Insets top="15.0"/>
                     </VBox.margin>
                 </ImageView>
+
+                <!-- Título de la sección -->
                 <ImageView fitHeight="28.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@img/tituloPagos.png"/>
                     </image>
                 </ImageView>
-
             </children>
         </VBox>
     </top>
+
+    <!-- Zona central: tabla con el listado de pagos -->
+    <center>
+        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefWidth="350.0"
+              style="-fx-background-color: #18310e;" BorderPane.alignment="TOP_LEFT">
+            <children>
+                <!-- Tabla de pagos con columnas para cada campo -->
+                <TableView fx:id="tablaPagos" prefHeight="350.0" prefWidth="350.0"
+                           style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <!-- ID del pago -->
+                        <TableColumn fx:id="colIdPago" prefWidth="40.0" text="ID"/>
+                        <!-- ID del socio asociado al pago -->
+                        <TableColumn fx:id="colIdSocio" prefWidth="50.0" text="Socio"/>
+                        <!-- Importe de la cuota -->
+                        <TableColumn fx:id="colCuota" prefWidth="60.0" text="Cuota"/>
+                        <!-- Fecha en la que se registró el pago -->
+                        <TableColumn fx:id="colFechaPago" prefWidth="80.0" text="Fecha"/>
+                        <!-- Estado del pago: pagado, pendiente o fallido -->
+                        <TableColumn fx:id="colEstado" prefWidth="80.0" text="Estado"/>
+                    </columns>
+                    <VBox.margin>
+                        <Insets left="5.0" right="5.0" top="5.0"/>
+                    </VBox.margin>
+                </TableView>
+            </children>
+        </VBox>
+    </center>
+
+    <!-- Zona inferior: botón para volver al menú principal -->
     <bottom>
         <Button mnemonicParsing="false" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER"
                 onAction="#volverAlMenu">
