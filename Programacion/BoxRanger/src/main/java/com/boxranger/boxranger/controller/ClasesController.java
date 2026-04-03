@@ -71,11 +71,20 @@ public class ClasesController {
 
     /**
      * Carga todas las clases desde la base de datos y las muestra en la tabla.
+     * Si hay un error de base de datos, muestra un alert con el motivo.
      */
     private void cargarTabla() {
-        ObservableList<Clase> lista =
-                FXCollections.observableArrayList(claseDAO.listarClases());
-        tablaClases.setItems(lista);
+        try {
+            ObservableList<Clase> lista =
+                    FXCollections.observableArrayList(claseDAO.listarClases());
+            tablaClases.setItems(lista);
+        } catch (RuntimeException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No se pudieron cargar las clases");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     /**

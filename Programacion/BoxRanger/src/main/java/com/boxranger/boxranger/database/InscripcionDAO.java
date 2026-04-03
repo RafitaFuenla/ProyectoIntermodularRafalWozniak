@@ -25,12 +25,11 @@ public class InscripcionDAO {
         List<Inscripcion> lista = new ArrayList<>();
         String sql = "SELECT * FROM Inscripciones";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+        // try-with-resources garantiza el cierre automático de conexión, statement y resultset
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
-            // Recorre cada fila del resultado y crea un objeto Inscripcion
             while (rs.next()) {
                 Inscripcion i = new Inscripcion(
                         rs.getInt("idSocio"),
@@ -41,7 +40,7 @@ public class InscripcionDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al consultar las inscripciones", e);
         }
 
         return lista;
@@ -56,9 +55,8 @@ public class InscripcionDAO {
     public void insertarInscripcion(Inscripcion inscripcion) {
         String sql = "INSERT INTO Inscripciones (idSocio, idClase, fecha_inscripcion) VALUES (?,?,?)";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, inscripcion.getIdSocio());
             ps.setInt(2, inscripcion.getIdClase());
@@ -67,7 +65,7 @@ public class InscripcionDAO {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al insertar la inscripción", e);
         }
     }
 
@@ -79,9 +77,8 @@ public class InscripcionDAO {
     public void eliminarInscripcion(Inscripcion inscripcion) {
         String sql = "DELETE FROM Inscripciones WHERE idSocio = ? AND idClase = ?";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, inscripcion.getIdSocio());
             ps.setInt(2, inscripcion.getIdClase());
@@ -89,7 +86,7 @@ public class InscripcionDAO {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al eliminar la inscripción", e);
         }
     }
 
@@ -100,9 +97,8 @@ public class InscripcionDAO {
     public void actualizarInscripcion(Inscripcion inscripcion) {
         String sql = "UPDATE Inscripciones SET fecha_inscripcion=? WHERE idSocio = ? AND idClase = ?";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, inscripcion.getFecha_inscripcion());
             ps.setInt(2, inscripcion.getIdSocio());
@@ -111,7 +107,7 @@ public class InscripcionDAO {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al actualizar la inscripción", e);
         }
     }
 }

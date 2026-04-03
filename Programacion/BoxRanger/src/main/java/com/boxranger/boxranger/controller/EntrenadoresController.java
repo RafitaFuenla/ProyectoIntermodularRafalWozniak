@@ -76,11 +76,20 @@ public class EntrenadoresController {
 
     /**
      * Carga todos los entrenadores desde la base de datos y los muestra en la tabla.
+     * Si hay un error de base de datos, muestra un alert con el motivo.
      */
     private void cargarTabla() {
-        ObservableList<Entrenador> lista =
-                FXCollections.observableArrayList(entrenadorDAO.listarEntrenadores());
-        tablaEntrenadores.setItems(lista);
+        try {
+            ObservableList<Entrenador> lista =
+                    FXCollections.observableArrayList(entrenadorDAO.listarEntrenadores());
+            tablaEntrenadores.setItems(lista);
+        } catch (RuntimeException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No se pudieron cargar los entrenadores");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     /**

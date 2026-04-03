@@ -24,12 +24,11 @@ public class SocioDAO {
         List<Socio> lista = new ArrayList<>();
         String sql = "SELECT * FROM Socios";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+        // try-with-resources garantiza el cierre automático de conexión, statement y resultset
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
-            // Recorre cada fila del resultado y crea un objeto Socio
             while (rs.next()) {
                 Socio s = new Socio(
                         rs.getInt("idSocio"),
@@ -45,7 +44,7 @@ public class SocioDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al consultar los socios", e);
         }
 
         return lista;
@@ -59,9 +58,8 @@ public class SocioDAO {
     public void insertarSocio(Socio socio) {
         String sql = "INSERT INTO Socios (nombre, apellidos, DNI, email, telefono, fecha_alta, fecha_baja) VALUES (?,?,?,?,?,?,?)";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, socio.getNombre());
             ps.setString(2, socio.getApellidos());
@@ -86,7 +84,7 @@ public class SocioDAO {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al insertar el socio", e);
         }
     }
 
@@ -97,15 +95,14 @@ public class SocioDAO {
     public void eliminarSocio(Socio socio) {
         String sql = "DELETE FROM Socios WHERE idSocio = ?";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, socio.getIdSocio());
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al eliminar el socio", e);
         }
     }
 
@@ -116,9 +113,8 @@ public class SocioDAO {
     public void actualizarSocio(Socio socio) {
         String sql = "UPDATE Socios SET nombre=?, apellidos=?, DNI=?, email=?, telefono=?, fecha_alta=?, fecha_baja=? WHERE idSocio = ?";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, socio.getNombre());
             ps.setString(2, socio.getApellidos());
@@ -144,7 +140,7 @@ public class SocioDAO {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al actualizar el socio", e);
         }
     }
 }
