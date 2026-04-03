@@ -163,8 +163,8 @@ Vista (FXML)  →  Controlador  →  DAO  →  Base de Datos
 
 ## 👨‍💻 Autor
 
-**Rafita** — 1º DAM Virtual — Prometeo by The Power  
-GitHub: [@tu-usuario](https://github.com/tu-usuario)
+**Rafal Wozniak Bebenek** — 1º DAM Virtual — Prometeo by The Power  
+GitHub: https://github.com/RafitaFuenla/
 
 ---
 
