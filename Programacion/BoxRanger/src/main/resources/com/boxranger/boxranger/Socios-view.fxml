@@ -5,36 +5,42 @@
 <!-- Pantalla CRUD completa: permite listar, añadir, editar y eliminar socios -->
 <!-- Al seleccionar un socio en la tabla, sus datos se cargan en el formulario -->
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0"
-            prefWidth="800.0" style="-fx-background-color: #18310e;" xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.boxranger.boxranger.controller.SociosController">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="800.0" style="-fx-background-color: #18310e;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.boxranger.boxranger.controller.SociosController">
 
     <!-- Zona superior: logo y título de la sección -->
     <top>
-        <VBox alignment="TOP_CENTER" prefWidth="800.0" spacing="5.0"
-              style="-fx-background-color: #18310e; -fx-border-color: black;" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER" prefWidth="800.0" spacing="5.0" style="-fx-background-color: #18310e; -fx-border-color: black;" BorderPane.alignment="CENTER">
             <children>
                 <!-- Logo principal de BoxRanger -->
                 <ImageView fitHeight="70.0" fitWidth="332.0" pickOnBounds="true">
                     <image>
-                        <Image url="@img/logoPrincipal.png"/>
+                        <Image url="@img/logoPrincipal.png" />
                     </image>
                     <VBox.margin>
-                        <Insets top="10.0"/>
+                        <Insets top="10.0" />
                     </VBox.margin>
                 </ImageView>
 
                 <!-- Título de la sección -->
                 <ImageView fitHeight="28.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@img/tituloSocios.png"/>
+                        <Image url="@img/tituloSocios.png" />
                     </image>
                     <VBox.margin>
-                        <Insets bottom="10.0"/>
+                        <Insets bottom="10.0" />
                     </VBox.margin>
                 </ImageView>
             </children>
@@ -49,75 +55,73 @@
                     <graphic>
                         <ImageView fitHeight="41.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@img/buttonHome.png"/>
+                                <Image url="@img/buttonHome.png" />
                             </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                         </ImageView>
                     </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </Button>
             </children>
             <padding>
-                <Insets bottom="10.0" top="5.0"/>
+                <Insets bottom="10.0" top="5.0" />
             </padding>
         </VBox>
     </bottom>
 
     <!-- Zona central: tabla, formulario y botones de acción -->
     <center>
-        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefWidth="800.0"
-              style="-fx-background-color: #18310e;" BorderPane.alignment="TOP_LEFT">
+        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefWidth="800.0" style="-fx-background-color: #18310e;" BorderPane.alignment="TOP_LEFT">
             <children>
 
                 <!-- Tabla de socios con todas sus columnas -->
-                <TableView fx:id="tablaSocios" prefHeight="300.0" prefWidth="800.0"
-                           style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tablaSocios" prefHeight="300.0" prefWidth="800.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colIdSocio" prefWidth="60.0" text="ID"/>
-                        <TableColumn fx:id="colNombre" prefWidth="100.0" text="Nombre"/>
-                        <TableColumn fx:id="colApellidos" prefWidth="120.0" text="Apellidos"/>
-                        <TableColumn fx:id="colDNI" prefWidth="90.0" text="DNI"/>
-                        <TableColumn fx:id="colEmail" prefWidth="140.0" text="Email"/>
-                        <TableColumn fx:id="colTelefono" prefWidth="100.0" text="Teléfono"/>
-                        <TableColumn fx:id="colFecha_alta" prefWidth="95.0" text="Alta"/>
-                        <TableColumn fx:id="colFecha_baja" prefWidth="95.0" text="Baja"/>
+                        <TableColumn fx:id="colIdSocio" prefWidth="60.0" text="ID" />
+                        <TableColumn fx:id="colNombre" prefWidth="100.0" text="Nombre" />
+                        <TableColumn fx:id="colApellidos" prefWidth="120.0" text="Apellidos" />
+                        <TableColumn fx:id="colDNI" prefWidth="90.0" text="DNI" />
+                        <TableColumn fx:id="colEmail" prefWidth="140.0" text="Email" />
+                        <TableColumn fx:id="colTelefono" prefWidth="100.0" text="Teléfono" />
+                        <TableColumn fx:id="colFecha_alta" prefWidth="95.0" text="Alta" />
+                        <TableColumn fx:id="colFecha_baja" prefWidth="95.0" text="Baja" />
                     </columns>
                     <VBox.margin>
-                        <Insets bottom="8.0" left="10.0" right="10.0" top="5.0"/>
+                        <Insets bottom="8.0" left="10.0" right="10.0" top="5.0" />
                     </VBox.margin>
                 </TableView>
 
                 <!-- Formulario primera fila: nombre, apellidos y DNI -->
                 <HBox alignment="CENTER" prefHeight="35.0" prefWidth="800.0" spacing="10.0">
                     <children>
-                        <TextField fx:id="txtNombre" promptText="Nombre" style="-fx-background-color: #dce8d5;"
-                                   HBox.hgrow="ALWAYS"/>
-                        <TextField fx:id="txtApellidos" promptText="Apellidos" style="-fx-background-color: #dce8d5;"
-                                   HBox.hgrow="ALWAYS"/>
-                        <TextField fx:id="txtDNI" promptText="DNI" style="-fx-background-color: #dce8d5;"
-                                   HBox.hgrow="ALWAYS"/>
+                        <TextField fx:id="txtNombre" promptText="Nombre" style="-fx-background-color: #dce8d5;" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtApellidos" promptText="Apellidos" style="-fx-background-color: #dce8d5;" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtDNI" promptText="DNI" style="-fx-background-color: #dce8d5;" HBox.hgrow="ALWAYS" />
                     </children>
                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                     <VBox.margin>
-                        <Insets/>
+                        <Insets />
                     </VBox.margin>
                 </HBox>
 
                 <!-- Formulario segunda fila: email, teléfono y fechas -->
-                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="800.0" spacing="10.0"
-                      style="-fx-background-color: transparent;">
+                <HBox alignment="CENTER" prefHeight="35.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: transparent;">
                     <children>
-                        <TextField fx:id="txtEmail" promptText="Email" style="-fx-background-color: #dce8d5;"
-                                   HBox.hgrow="ALWAYS"/>
-                        <TextField fx:id="txtTelefono" promptText="Teléfono" style="-fx-background-color: #dce8d5;"
-                                   HBox.hgrow="ALWAYS"/>
+                        <TextField fx:id="txtEmail" promptText="Email" style="-fx-background-color: #dce8d5;" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txtTelefono" promptText="Teléfono" style="-fx-background-color: #dce8d5;" HBox.hgrow="ALWAYS" />
                         <!-- Selector de fecha de alta (obligatorio) -->
-                        <DatePicker fx:id="txtFechaAlta" prefWidth="180.0" promptText="Fecha Alta"/>
+                        <DatePicker fx:id="txtFechaAlta" prefWidth="180.0" promptText="Fecha Alta" />
                         <!-- Selector de fecha de baja (opcional) -->
-                        <DatePicker fx:id="txtFechaBaja" prefWidth="180.0" promptText="Fecha Baja"/>
+                        <DatePicker fx:id="txtFechaBaja" prefWidth="180.0" promptText="Fecha Baja" />
                     </children>
                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0"/>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
                     </padding>
                 </HBox>
 
@@ -125,37 +129,43 @@
                 <HBox alignment="CENTER" prefHeight="55.0" prefWidth="800.0" spacing="30.0">
                     <children>
                         <!-- Botón para insertar un nuevo socio -->
-                        <Button fx:id="btnAnadir" mnemonicParsing="false" onAction="#anadir"
-                                style="-fx-background-color: transparent;">
+                        <Button fx:id="btnAnadir" mnemonicParsing="false" onAction="#anadir" style="-fx-background-color: transparent;">
                             <graphic>
-                                <ImageView fitHeight="40.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="40.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@img/btnAnadir.png"/>
+                                        <Image url="@img/btnAnadir.png" />
                                     </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                                 </ImageView>
                             </graphic>
                         </Button>
 
                         <!-- Botón para modificar el socio seleccionado -->
-                        <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar"
-                                style="-fx-background-color: transparent;">
+                        <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" style="-fx-background-color: transparent;">
                             <graphic>
-                                <ImageView fitHeight="40.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="40.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@img/btnEditar.png"/>
+                                        <Image url="@img/btnEditar.png" />
                                     </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                                 </ImageView>
                             </graphic>
                         </Button>
 
                         <!-- Botón para eliminar el socio seleccionado -->
-                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar"
-                                style="-fx-background-color: transparent;">
+                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" style="-fx-background-color: transparent;">
                             <graphic>
-                                <ImageView fitHeight="40.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="40.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@img/btnEliminar.png"/>
+                                        <Image url="@img/btnEliminar.png" />
                                     </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                                 </ImageView>
                             </graphic>
                         </Button>
