@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0"
-            prefWidth="350.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0"
+            prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.boxranger.boxranger.BoxRangerController">
 
     <!-- Zona central: logo y botones de navegación -->
     <center>
-        <VBox alignment="TOP_CENTER" prefHeight="481.0" prefWidth="350.0" spacing="25.0"
+        <VBox alignment="TOP_CENTER" prefHeight="540.0" prefWidth="400.0" spacing="25.0"
               style="-fx-background-color: #18310e; -fx-border-color: black;" BorderPane.alignment="CENTER">
             <children>
 

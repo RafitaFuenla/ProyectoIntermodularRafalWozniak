@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="335.0" style="-fx-background-color: #18310e;" xmlns="http://javafx.com/javafx/21"
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0"
+            prefWidth="800.0" style="-fx-background-color: #18310e;" xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.boxranger.boxranger.controller.EntrenadoresController">
 
     <!-- Zona superior: logo y título de la sección -->
     <top>
-        <VBox alignment="TOP_CENTER" prefWidth="350.0" spacing="5.0"
+        <VBox alignment="TOP_CENTER" prefWidth="800.0" spacing="5.0"
               style="-fx-background-color: #18310e; -fx-border-color: black;" BorderPane.alignment="CENTER">
             <children>
                 <!-- Logo principal de BoxRanger -->
@@ -47,47 +47,51 @@
 
     <!-- Zona inferior: botón para volver al menú principal -->
     <bottom>
-        <Button mnemonicParsing="false" onAction="#volverAlMenu" style="-fx-background-color: transparent;"
-                BorderPane.alignment="CENTER">
-            <graphic>
-                <ImageView fitHeight="41.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@img/buttonHome.png"/>
-                    </image>
-                </ImageView>
-            </graphic>
-            <BorderPane.margin>
-                <Insets bottom="10.0"/>
-            </BorderPane.margin>
-        </Button>
+        <VBox alignment="CENTER" style="-fx-background-color: #18310e;">
+            <children>
+                <Button mnemonicParsing="false" onAction="#volverAlMenu" style="-fx-background-color: transparent;">
+                    <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@img/buttonHome.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="10.0" top="5.0"/>
+            </padding>
+        </VBox>
     </bottom>
 
     <!-- Zona central: tabla con el listado de entrenadores -->
     <center>
-        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0"
-              BorderPane.alignment="TOP_LEFT">
+        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefWidth="800.0"
+              style="-fx-background-color: #18310e;" BorderPane.alignment="TOP_LEFT">
             <children>
                 <!-- Tabla de entrenadores con todas sus columnas -->
-                <TableView fx:id="tablaEntrenadores" prefHeight="200.0" prefWidth="200.0"
+                <TableView fx:id="tablaEntrenadores" prefHeight="350.0" prefWidth="800.0"
+                           columnResizePolicy="CONSTRAINED_RESIZE_POLICY"
                            style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                     <columns>
                         <!-- ID del entrenador -->
-                        <TableColumn fx:id="colIdEntrenador" prefWidth="26.0" text="id"/>
+                        <TableColumn fx:id="colIdEntrenador" prefWidth="50.0" text="ID"/>
                         <!-- Nombre del entrenador -->
-                        <TableColumn fx:id="colNombre" prefWidth="55.0" text="Nombre"/>
+                        <TableColumn fx:id="colNombre" prefWidth="120.0" text="Nombre"/>
                         <!-- Apellidos del entrenador -->
-                        <TableColumn fx:id="colApellidos" prefWidth="67.0" text="Apellidos"/>
+                        <TableColumn fx:id="colApellidos" prefWidth="150.0" text="Apellidos"/>
                         <!-- Especialidad deportiva -->
-                        <TableColumn fx:id="colEspecialidad" prefWidth="81.0" text="Especialidad"/>
+                        <TableColumn fx:id="colEspecialidad" prefWidth="120.0" text="Especialidad"/>
                         <!-- DNI del entrenador -->
-                        <TableColumn fx:id="colDNI" prefWidth="49.0" text="DNI"/>
+                        <TableColumn fx:id="colDNI" prefWidth="100.0" text="DNI"/>
                         <!-- Email de contacto -->
-                        <TableColumn fx:id="colEmail" prefWidth="42.0" text="Email"/>
+                        <TableColumn fx:id="colEmail" prefWidth="150.0" text="Email"/>
                         <!-- Teléfono de contacto -->
-                        <TableColumn fx:id="colTelefono" prefWidth="57.0" text="Telefono"/>
+                        <TableColumn fx:id="colTelefono" prefWidth="110.0" text="Teléfono"/>
                     </columns>
                     <VBox.margin>
-                        <Insets left="5.0" right="5.0"/>
+                        <Insets left="5.0" right="5.0" top="5.0"/>
                     </VBox.margin>
                 </TableView>
             </children>

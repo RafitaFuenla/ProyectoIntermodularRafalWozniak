@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0"
-            prefWidth="350.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.boxranger.boxranger.controller.ClasesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0"
+            prefWidth="800.0" style="-fx-background-color: #18310e;" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.boxranger.boxranger.controller.ClasesController">
 
     <!-- Zona superior: logo y título de la sección -->
     <top>
-        <VBox alignment="TOP_CENTER" prefWidth="350.0" spacing="5.0"
+        <VBox alignment="TOP_CENTER" prefWidth="800.0" spacing="5.0"
               style="-fx-background-color: #18310e; -fx-border-color: black;" BorderPane.alignment="CENTER">
             <children>
                 <!-- Logo principal de BoxRanger -->
@@ -37,6 +37,9 @@
                     <image>
                         <Image url="@img/tituloClases.png"/>
                     </image>
+                    <VBox.margin>
+                        <Insets bottom="10.0"/>
+                    </VBox.margin>
                 </ImageView>
             </children>
         </VBox>
@@ -44,25 +47,26 @@
 
     <!-- Zona central: tabla con el listado de clases -->
     <center>
-        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefWidth="350.0"
+        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefWidth="800.0"
               style="-fx-background-color: #18310e;" BorderPane.alignment="TOP_LEFT">
             <children>
                 <!-- Tabla de clases con todas sus columnas -->
-                <TableView fx:id="tablaClases" prefHeight="350.0" prefWidth="350.0"
+                <TableView fx:id="tablaClases" prefHeight="350.0" prefWidth="800.0"
+                           columnResizePolicy="CONSTRAINED_RESIZE_POLICY"
                            style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                     <columns>
                         <!-- ID de la clase -->
-                        <TableColumn fx:id="colIdClase" prefWidth="40.0" text="ID"/>
+                        <TableColumn fx:id="colIdClase" prefWidth="60.0" text="ID"/>
                         <!-- ID del entrenador asignado -->
-                        <TableColumn fx:id="colIdEntrenador" prefWidth="50.0" text="Entren."/>
+                        <TableColumn fx:id="colIdEntrenador" prefWidth="100.0" text="Entrenador"/>
                         <!-- Nombre descriptivo de la clase -->
-                        <TableColumn fx:id="colNombre" prefWidth="80.0" text="Nombre"/>
+                        <TableColumn fx:id="colNombre" prefWidth="200.0" text="Nombre"/>
                         <!-- Hora de inicio de la clase -->
-                        <TableColumn fx:id="colHoraInicio" prefWidth="55.0" text="Inicio"/>
+                        <TableColumn fx:id="colHoraInicio" prefWidth="150.0" text="Hora Inicio"/>
                         <!-- Hora de fin de la clase -->
-                        <TableColumn fx:id="colHoraFin" prefWidth="55.0" text="Fin"/>
+                        <TableColumn fx:id="colHoraFin" prefWidth="150.0" text="Hora Fin"/>
                         <!-- Número máximo de atletas permitidos -->
-                        <TableColumn fx:id="colMaxAtletas" prefWidth="60.0" text="Máx."/>
+                        <TableColumn fx:id="colMaxAtletas" prefWidth="140.0" text="Máx. Atletas"/>
                     </columns>
                     <VBox.margin>
                         <Insets left="5.0" right="5.0" top="5.0"/>
@@ -74,18 +78,22 @@
 
     <!-- Zona inferior: botón para volver al menú principal -->
     <bottom>
-        <Button mnemonicParsing="false" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER"
-                onAction="#volverAlMenu">
-            <graphic>
-                <ImageView fitHeight="41.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@img/buttonHome.png"/>
-                    </image>
-                </ImageView>
-            </graphic>
-            <BorderPane.margin>
-                <Insets bottom="10.0"/>
-            </BorderPane.margin>
-        </Button>
+        <VBox alignment="CENTER" style="-fx-background-color: #18310e;">
+            <children>
+                <Button mnemonicParsing="false" style="-fx-background-color: transparent;"
+                        onAction="#volverAlMenu">
+                    <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@img/buttonHome.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="10.0" top="5.0"/>
+            </padding>
+        </VBox>
     </bottom>
 </BorderPane>

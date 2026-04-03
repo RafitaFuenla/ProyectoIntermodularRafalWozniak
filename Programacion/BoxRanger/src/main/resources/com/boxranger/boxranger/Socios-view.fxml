@@ -18,12 +18,12 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0"
-            prefWidth="388.0" style="-fx-background-color: #18310e;" xmlns="http://javafx.com/javafx/21"
+            prefWidth="800.0" style="-fx-background-color: #18310e;" xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.boxranger.boxranger.controller.SociosController">
 
     <!-- Zona superior: logo y título de la sección -->
     <top>
-        <VBox alignment="TOP_CENTER" prefWidth="350.0" spacing="5.0"
+        <VBox alignment="TOP_CENTER" prefWidth="800.0" spacing="5.0"
               style="-fx-background-color: #18310e; -fx-border-color: black;" BorderPane.alignment="CENTER">
             <children>
                 <!-- Logo principal de BoxRanger -->
@@ -51,92 +51,90 @@
 
     <!-- Zona inferior: botón para volver al menú principal -->
     <bottom>
-        <Button mnemonicParsing="false" onAction="#volverAlMenu" style="-fx-background-color: transparent;"
-                BorderPane.alignment="CENTER">
-            <graphic>
-                <ImageView fitHeight="41.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@img/buttonHome.png"/>
-                    </image>
-                </ImageView>
-            </graphic>
-            <BorderPane.margin>
-                <Insets bottom="10.0"/>
-            </BorderPane.margin>
-        </Button>
+        <VBox alignment="CENTER" style="-fx-background-color: #18310e;">
+            <children>
+                <Button mnemonicParsing="false" onAction="#volverAlMenu"
+                        style="-fx-background-color: transparent;">
+                    <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@img/buttonHome.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="10.0" top="5.0"/>
+            </padding>
+        </VBox>
     </bottom>
 
     <!-- Zona central: tabla, formulario y botones de acción -->
     <center>
-        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefWidth="100.0"
-              BorderPane.alignment="TOP_LEFT">
+        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefWidth="800.0"
+              style="-fx-background-color: #18310e;" BorderPane.alignment="TOP_LEFT">
             <children>
 
                 <!-- Tabla de socios con todas sus columnas -->
-                <TableView fx:id="tablaSocios" prefHeight="200.0" prefWidth="200.0"
+                <TableView fx:id="tablaSocios" prefHeight="300.0" prefWidth="800.0"
                            style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colIdSocio" prefWidth="45.0" text="idSocio"/>
-                        <TableColumn fx:id="colNombre" prefWidth="56.0" text="Nombre"/>
-                        <TableColumn fx:id="colApellidos" prefWidth="71.0" text="Apellidos"/>
-                        <TableColumn fx:id="colDNI" prefWidth="57.0" text="DNI"/>
-                        <TableColumn fx:id="colEmail" prefWidth="55.0" text="Email"/>
-                        <TableColumn fx:id="colTelefono" prefWidth="56.0" text="Teléfono"/>
-                        <TableColumn fx:id="colFecha_alta" prefWidth="45.0" text="Alta"/>
-                        <TableColumn fx:id="colFecha_baja" prefWidth="55.0" text="Baja"/>
+                        <TableColumn fx:id="colIdSocio" prefWidth="60.0" text="ID"/>
+                        <TableColumn fx:id="colNombre" prefWidth="100.0" text="Nombre"/>
+                        <TableColumn fx:id="colApellidos" prefWidth="120.0" text="Apellidos"/>
+                        <TableColumn fx:id="colDNI" prefWidth="90.0" text="DNI"/>
+                        <TableColumn fx:id="colEmail" prefWidth="140.0" text="Email"/>
+                        <TableColumn fx:id="colTelefono" prefWidth="100.0" text="Teléfono"/>
+                        <TableColumn fx:id="colFecha_alta" prefWidth="95.0" text="Alta"/>
+                        <TableColumn fx:id="colFecha_baja" prefWidth="95.0" text="Baja"/>
                     </columns>
                     <VBox.margin>
-                        <Insets left="5.0" right="5.0"/>
+                        <Insets bottom="8.0" left="10.0" right="10.0" top="5.0"/>
                     </VBox.margin>
                 </TableView>
 
                 <!-- Formulario primera fila: nombre, apellidos y DNI -->
-                <HBox prefHeight="32.0" prefWidth="343.0">
+                <HBox prefHeight="35.0" prefWidth="800.0" spacing="10.0" alignment="CENTER">
                     <children>
-                        <TextField fx:id="txtNombre" promptText="Nombre" style="-fx-background-color: #dce8d5;">
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0"/>
-                            </HBox.margin>
-                        </TextField>
-                        <TextField fx:id="txtApellidos" promptText="Apellidos" style="-fx-background-color: #dce8d5;"/>
-                        <TextField fx:id="txtDNI" promptText="DNI" style="-fx-background-color: #dce8d5;">
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0"/>
-                            </HBox.margin>
-                        </TextField>
+                        <TextField fx:id="txtNombre" promptText="Nombre"
+                                   style="-fx-background-color: #dce8d5;" HBox.hgrow="ALWAYS"/>
+                        <TextField fx:id="txtApellidos" promptText="Apellidos"
+                                   style="-fx-background-color: #dce8d5;" HBox.hgrow="ALWAYS"/>
+                        <TextField fx:id="txtDNI" promptText="DNI"
+                                   style="-fx-background-color: #dce8d5;" HBox.hgrow="ALWAYS"/>
                     </children>
+                    <padding>
+                        <Insets left="10.0" right="10.0"/>
+                    </padding>
                 </HBox>
 
                 <!-- Formulario segunda fila: email, teléfono y fechas -->
-                <HBox prefHeight="28.0" prefWidth="350.0" style="-fx-background-color: transparent;">
+                <HBox prefHeight="35.0" prefWidth="800.0" spacing="10.0" alignment="CENTER"
+                      style="-fx-background-color: transparent;">
                     <children>
-                        <TextField fx:id="txtEmail" promptText="Email" style="-fx-background-color: #dce8d5;">
-                            <HBox.margin>
-                                <Insets left="5.0" right="5.0"/>
-                            </HBox.margin>
-                        </TextField>
-                        <TextField fx:id="txtTelefono" promptText="Teléfono" style="-fx-background-color: #dce8d5;"/>
+                        <TextField fx:id="txtEmail" promptText="Email"
+                                   style="-fx-background-color: #dce8d5;" HBox.hgrow="ALWAYS"/>
+                        <TextField fx:id="txtTelefono" promptText="Teléfono"
+                                   style="-fx-background-color: #dce8d5;" HBox.hgrow="ALWAYS"/>
                         <!-- Selector de fecha de alta (obligatorio) -->
-                        <DatePicker fx:id="txtFechaAlta" promptText="Fecha Alta">
-                            <HBox.margin>
-                                <Insets left="5.0"/>
-                            </HBox.margin>
-                        </DatePicker>
+                        <DatePicker fx:id="txtFechaAlta" promptText="Fecha Alta"
+                                    prefWidth="180.0"/>
                         <!-- Selector de fecha de baja (opcional) -->
-                        <DatePicker fx:id="txtFechaBaja" promptText="Fecha Baja">
-                            <HBox.margin>
-                                <Insets bottom="10.0" left="5.0" right="5.0"/>
-                            </HBox.margin>
-                        </DatePicker>
+                        <DatePicker fx:id="txtFechaBaja" promptText="Fecha Baja"
+                                    prefWidth="180.0"/>
                     </children>
+                    <padding>
+                        <Insets left="10.0" right="10.0"/>
+                    </padding>
                 </HBox>
 
                 <!-- Botones de acción: añadir, editar y eliminar -->
-                <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="350.0">
+                <HBox alignment="CENTER" prefHeight="55.0" prefWidth="800.0" spacing="30.0">
                     <children>
                         <!-- Botón para insertar un nuevo socio -->
                         <Button fx:id="btnAnadir" mnemonicParsing="false" onAction="#anadir"
-                                prefHeight="9.0" prefWidth="97.0" style="-fx-background-color: transparent;">
+                                style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="40.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
