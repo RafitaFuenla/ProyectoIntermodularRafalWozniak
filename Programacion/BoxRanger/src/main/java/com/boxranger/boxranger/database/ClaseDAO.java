@@ -23,12 +23,11 @@ public class ClaseDAO {
         List<Clase> lista = new ArrayList<>();
         String sql = "SELECT * FROM Clases";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+        // try-with-resources garantiza el cierre automático de conexión, statement y resultset
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
-            // Recorre cada fila del resultado y crea un objeto Clase
             while (rs.next()) {
                 Clase c = new Clase(
                         rs.getInt("idClase"),
@@ -42,7 +41,7 @@ public class ClaseDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al consultar las clases", e);
         }
 
         return lista;
@@ -55,9 +54,8 @@ public class ClaseDAO {
     public void insertarClase(Clase clase) {
         String sql = "INSERT INTO Clases (idEntrenador, nombre, hora_inicio, hora_fin, max_atletas) VALUES (?,?,?,?,?)";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, clase.getIdEntrenador());
             ps.setString(2, clase.getNombre());
@@ -68,7 +66,7 @@ public class ClaseDAO {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al insertar la clase", e);
         }
     }
 
@@ -79,15 +77,14 @@ public class ClaseDAO {
     public void eliminarClase(Clase clase) {
         String sql = "DELETE FROM Clases WHERE idClase = ?";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, clase.getIdClase());
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al eliminar la clase", e);
         }
     }
 
@@ -98,9 +95,8 @@ public class ClaseDAO {
     public void actualizarClase(Clase clase) {
         String sql = "UPDATE Clases SET idEntrenador=?, nombre=?, hora_inicio=?, hora_fin=?, max_atletas=? WHERE idClase = ?";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, clase.getIdEntrenador());
             ps.setString(2, clase.getNombre());
@@ -112,7 +108,7 @@ public class ClaseDAO {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al actualizar la clase", e);
         }
     }
 }

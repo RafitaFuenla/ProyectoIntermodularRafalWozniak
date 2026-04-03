@@ -66,11 +66,20 @@ public class PagosController {
 
     /**
      * Carga todos los pagos desde la base de datos y los muestra en la tabla.
+     * Si hay un error de base de datos, muestra un alert con el motivo.
      */
     private void cargarTabla() {
-        ObservableList<Pago> lista =
-                FXCollections.observableArrayList(pagoDAO.listarPagos());
-        tablaPagos.setItems(lista);
+        try {
+            ObservableList<Pago> lista =
+                    FXCollections.observableArrayList(pagoDAO.listarPagos());
+            tablaPagos.setItems(lista);
+        } catch (RuntimeException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No se pudieron cargar los pagos");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     /**

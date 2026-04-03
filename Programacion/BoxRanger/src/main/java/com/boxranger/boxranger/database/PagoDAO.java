@@ -23,12 +23,11 @@ public class PagoDAO {
         List<Pago> lista = new ArrayList<>();
         String sql = "SELECT * FROM Pagos";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+        // try-with-resources garantiza el cierre automático de conexión, statement y resultset
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
-            // Recorre cada fila del resultado y crea un objeto Pago
             while (rs.next()) {
                 Pago p = new Pago(
                         rs.getInt("idPago"),
@@ -41,7 +40,7 @@ public class PagoDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al consultar los pagos", e);
         }
 
         return lista;
@@ -55,9 +54,8 @@ public class PagoDAO {
     public void insertarPago(Pago pago) {
         String sql = "INSERT INTO Pagos (idSocio, cuota, fecha_pago, estado) VALUES (?,?,?,?)";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, pago.getIdSocio());
             ps.setDouble(2, pago.getCuota());
@@ -67,7 +65,7 @@ public class PagoDAO {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al insertar el pago", e);
         }
     }
 
@@ -78,15 +76,14 @@ public class PagoDAO {
     public void eliminarPago(Pago pago) {
         String sql = "DELETE FROM Pagos WHERE idPago = ?";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, pago.getIdPago());
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al eliminar el pago", e);
         }
     }
 
@@ -97,9 +94,8 @@ public class PagoDAO {
     public void actualizarPago(Pago pago) {
         String sql = "UPDATE Pagos SET idSocio=?, cuota=?, fecha_pago=?, estado=? WHERE idPago = ?";
 
-        try {
-            Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sql);
+        try (Connection con = ConexionDB.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, pago.getIdSocio());
             ps.setDouble(2, pago.getCuota());
@@ -110,7 +106,7 @@ public class PagoDAO {
             ps.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al actualizar el pago", e);
         }
     }
 }

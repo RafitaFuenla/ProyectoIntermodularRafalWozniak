@@ -21,14 +21,16 @@ public class ConexionDB {
 
     /**
      * Establece y devuelve una conexión activa con la base de datos.
-     * @return objeto Connection si la conexión es exitosa, null si falla
+     * Si MySQL no está disponible o las credenciales fallan, lanza RuntimeException
+     * para que quien llame pueda mostrar el error al usuario en lugar de recibir null.
+     * @return objeto Connection listo para usar
      */
     public static Connection getConexion() {
         try {
             return DriverManager.getConnection(url, usuario, contrasena);
         } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
+            // No tiene sentido devolver null: el DAO no puede funcionar sin conexión
+            throw new RuntimeException("No se pudo conectar a la base de datos", e);
         }
     }
 }

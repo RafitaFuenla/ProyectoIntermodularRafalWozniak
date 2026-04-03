@@ -131,11 +131,16 @@ public class SociosController {
 
     /**
      * Carga todos los socios desde la base de datos y los muestra en la tabla.
+     * Si hay un error de base de datos, muestra un alert con el motivo.
      */
     private void cargarTabla() {
-        ObservableList<Socio> lista =
-                FXCollections.observableArrayList(socioDAO.listarSocios());
-        tablaSocios.setItems(lista);
+        try {
+            ObservableList<Socio> lista =
+                    FXCollections.observableArrayList(socioDAO.listarSocios());
+            tablaSocios.setItems(lista);
+        } catch (RuntimeException e) {
+            mostrarError("No se pudieron cargar los socios: " + e.getMessage());
+        }
     }
 
     /**
@@ -158,7 +163,13 @@ public class SociosController {
                 txtFechaBaja.getValue() != null ? txtFechaBaja.getValue().toString() : null
         );
 
-        socioDAO.insertarSocio(socio);
+        try {
+            socioDAO.insertarSocio(socio);
+        } catch (RuntimeException e) {
+            mostrarError("Error al guardar el socio: " + e.getMessage());
+            return;
+        }
+
         cargarTabla();
         limpiarCampos();
         socioSeleccionado = null;
@@ -178,7 +189,13 @@ public class SociosController {
             return;
         }
 
-        socioDAO.eliminarSocio(socio);
+        try {
+            socioDAO.eliminarSocio(socio);
+        } catch (RuntimeException e) {
+            mostrarError("Error al eliminar el socio: " + e.getMessage());
+            return;
+        }
+
         cargarTabla();
         limpiarCampos();
         socioSeleccionado = null;
@@ -208,7 +225,13 @@ public class SociosController {
         socioSeleccionado.setFecha_baja(
                 txtFechaBaja.getValue() != null ? txtFechaBaja.getValue().toString() : null);
 
-        socioDAO.actualizarSocio(socioSeleccionado);
+        try {
+            socioDAO.actualizarSocio(socioSeleccionado);
+        } catch (RuntimeException e) {
+            mostrarError("Error al actualizar el socio: " + e.getMessage());
+            return;
+        }
+
         cargarTabla();
         limpiarCampos();
         socioSeleccionado = null;
@@ -216,26 +239,62 @@ public class SociosController {
     }
 
     /**
-     * Valida que los campos obligatorios del formulario estén rellenos.
-     * @return true si todos los campos obligatorios tienen valor, false si falta alguno
+     * Valida que los campos del formulario tengan valores correctos antes de guardar.
+     * Nombre, apellidos, DNI y fecha de alta son obligatorios.
+     * Email, teléfono y fecha de baja son opcionales pero se valida su formato si se rellenan.
+     * @return true si todo está correcto, false si hay algún problema
      */
     private boolean validarCamposObligatorios() {
-        if (txtNombre.getText() == null || txtNombre.getText().isBlank()) {
+        String nombre = txtNombre.getText();
+        String apellidos = txtApellidos.getText();
+        String dni = txtDNI.getText();
+        String email = txtEmail.getText();
+        String telefono = txtTelefono.getText();
+
+        if (nombre == null || nombre.isBlank()) {
             mostrarAlerta("El nombre es obligatorio.");
             return false;
         }
-        if (txtApellidos.getText() == null || txtApellidos.getText().isBlank()) {
+        if (apellidos == null || apellidos.isBlank()) {
             mostrarAlerta("Los apellidos son obligatorios.");
             return false;
         }
-        if (txtDNI.getText() == null || txtDNI.getText().isBlank()) {
+        if (dni == null || dni.isBlank()) {
             mostrarAlerta("El DNI es obligatorio.");
+            return false;
+        }
+        // DNI español: 8 dígitos seguidos de una letra
+        if (!dni.trim().matches("\\d{8}[A-Za-z]")) {
+            mostrarAlerta("El DNI no tiene el formato correcto (ej: 12345678A).");
             return false;
         }
         if (txtFechaAlta.getValue() == null) {
             mostrarAlerta("La fecha de alta es obligatoria.");
             return false;
         }
+
+        // Email y teléfono son opcionales, pero si se rellenan se comprueba el formato
+        if (email != null && !email.isBlank()) {
+            if (!email.trim().matches("[\\w._%+\\-]+@[\\w.\\-]+\\.[a-zA-Z]{2,}")) {
+                mostrarAlerta("El email no tiene un formato válido.");
+                return false;
+            }
+        }
+        if (telefono != null && !telefono.isBlank()) {
+            if (!telefono.trim().matches("\\d{9}")) {
+                mostrarAlerta("El teléfono debe tener 9 dígitos.");
+                return false;
+            }
+        }
+
+        // La fecha de baja, si se indica, no puede ser anterior a la de alta
+        if (txtFechaBaja.getValue() != null) {
+            if (txtFechaBaja.getValue().isBefore(txtFechaAlta.getValue())) {
+                mostrarAlerta("La fecha de baja no puede ser anterior a la fecha de alta.");
+                return false;
+            }
+        }
+
         return true;
     }
 
@@ -254,11 +313,25 @@ public class SociosController {
 
     /**
      * Muestra una alerta de tipo WARNING con el mensaje indicado.
+     * Se usa para avisos de validación de formulario.
      * @param mensaje texto a mostrar en la alerta
      */
     private void mostrarAlerta(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Aviso");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+    /**
+     * Muestra una alerta de tipo ERROR con el mensaje indicado.
+     * Se usa cuando falla una operación de base de datos.
+     * @param mensaje texto a mostrar en la alerta
+     */
+    private void mostrarError(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
