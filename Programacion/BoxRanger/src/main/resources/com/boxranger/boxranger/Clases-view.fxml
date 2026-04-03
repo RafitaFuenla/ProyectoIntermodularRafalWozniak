@@ -52,7 +52,7 @@
             <children>
                 <!-- Tabla de clases con todas sus columnas -->
                 <TableView fx:id="tablaClases" prefHeight="350.0" prefWidth="800.0"
-                           columnResizePolicy="CONSTRAINED_RESIZE_POLICY"
+
                            style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                     <columns>
                         <!-- ID de la clase -->

@@ -12,6 +12,12 @@ public class Pago {
     /** Identificador del socio que realiza el pago (clave foránea) */
     private int idSocio;
 
+    /** Nombre del socio */
+    private String nombre;
+
+    /** Apellidos del socio */
+    private String apellidos;
+
     /** Importe de la cuota pagada */
     private double cuota;
 
@@ -27,15 +33,13 @@ public class Pago {
 
     /**
      * Constructor completo con todos los campos del pago.
-     * @param idPago identificador único
-     * @param idSocio identificador del socio asociado
-     * @param cuota importe de la cuota
-     * @param fecha_pago fecha del pago
-     * @param estado estado del pago (pagado, pendiente, fallido)
      */
-    public Pago(int idPago, int idSocio, double cuota, String fecha_pago, String estado) {
+    public Pago(int idPago, int idSocio, String nombre, String apellidos,
+                double cuota, String fecha_pago, String estado) {
         this.idPago = idPago;
         this.idSocio = idSocio;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
         this.cuota = cuota;
         this.fecha_pago = fecha_pago;
         this.estado = estado;
@@ -43,12 +47,27 @@ public class Pago {
 
     public int getIdPago() { return idPago; }
     public void setIdPago(int idPago) { this.idPago = idPago; }
+
     public int getIdSocio() { return idSocio; }
     public void setIdSocio(int idSocio) { this.idSocio = idSocio; }
+
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public String getApellidos() { return apellidos; }
+    public void setApellidos(String apellidos) { this.apellidos = apellidos; }
+
     public double getCuota() { return cuota; }
     public void setCuota(double cuota) { this.cuota = cuota; }
+
     public String getFecha_pago() { return fecha_pago; }
     public void setFecha_pago(String fecha_pago) { this.fecha_pago = fecha_pago; }
+
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }
+
+    /** Método opcional para nombre completo */
+    public String getNombreCompleto() {
+        return nombre + " " + apellidos;
+    }
 }

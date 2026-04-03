@@ -17,12 +17,10 @@
             prefWidth="800.0" style="-fx-background-color: #18310e;" xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.boxranger.boxranger.controller.EntrenadoresController">
 
-    <!-- Zona superior: logo y título de la sección -->
     <top>
         <VBox alignment="TOP_CENTER" prefWidth="800.0" spacing="5.0"
               style="-fx-background-color: #18310e; -fx-border-color: black;" BorderPane.alignment="CENTER">
             <children>
-                <!-- Logo principal de BoxRanger -->
                 <ImageView fitHeight="70.0" fitWidth="332.0" pickOnBounds="true">
                     <image>
                         <Image url="@img/logoPrincipal.png"/>
@@ -31,8 +29,6 @@
                         <Insets top="10.0"/>
                     </VBox.margin>
                 </ImageView>
-
-                <!-- Título de la sección -->
                 <ImageView fitHeight="28.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@img/tituloEntrenadores.png"/>
@@ -45,7 +41,6 @@
         </VBox>
     </top>
 
-    <!-- Zona inferior: botón para volver al menú principal -->
     <bottom>
         <VBox alignment="CENTER" style="-fx-background-color: #18310e;">
             <children>
@@ -65,29 +60,19 @@
         </VBox>
     </bottom>
 
-    <!-- Zona central: tabla con el listado de entrenadores -->
     <center>
         <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefWidth="800.0"
               style="-fx-background-color: #18310e;" BorderPane.alignment="TOP_LEFT">
             <children>
-                <!-- Tabla de entrenadores con todas sus columnas -->
                 <TableView fx:id="tablaEntrenadores" prefHeight="350.0" prefWidth="800.0"
-                           columnResizePolicy="CONSTRAINED_RESIZE_POLICY"
                            style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                     <columns>
-                        <!-- ID del entrenador -->
                         <TableColumn fx:id="colIdEntrenador" prefWidth="50.0" text="ID"/>
-                        <!-- Nombre del entrenador -->
                         <TableColumn fx:id="colNombre" prefWidth="120.0" text="Nombre"/>
-                        <!-- Apellidos del entrenador -->
                         <TableColumn fx:id="colApellidos" prefWidth="150.0" text="Apellidos"/>
-                        <!-- Especialidad deportiva -->
                         <TableColumn fx:id="colEspecialidad" prefWidth="120.0" text="Especialidad"/>
-                        <!-- DNI del entrenador -->
                         <TableColumn fx:id="colDNI" prefWidth="100.0" text="DNI"/>
-                        <!-- Email de contacto -->
                         <TableColumn fx:id="colEmail" prefWidth="150.0" text="Email"/>
-                        <!-- Teléfono de contacto -->
                         <TableColumn fx:id="colTelefono" prefWidth="110.0" text="Teléfono"/>
                     </columns>
                     <VBox.margin>

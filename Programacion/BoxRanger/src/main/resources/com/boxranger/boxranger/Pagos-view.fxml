@@ -13,16 +13,20 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0"
-            prefWidth="800.0" style="-fx-background-color: #18310e;" xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.boxranger.boxranger.controller.PagosController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="540.0" prefWidth="800.0"
+            style="-fx-background-color: #18310e;"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.boxranger.boxranger.controller.PagosController">
 
-    <!-- Zona superior: logo y título de la sección -->
+    <!-- Zona superior -->
     <top>
         <VBox alignment="TOP_CENTER" prefWidth="800.0" spacing="5.0"
-              style="-fx-background-color: #18310e; -fx-border-color: black;" BorderPane.alignment="CENTER">
+              style="-fx-background-color: #18310e; -fx-border-color: black;">
+
             <children>
-                <!-- Logo principal de BoxRanger -->
+
                 <ImageView fitHeight="70.0" fitWidth="332.0" pickOnBounds="true">
                     <image>
                         <Image url="@img/logoPrincipal.png"/>
@@ -32,7 +36,6 @@
                     </VBox.margin>
                 </ImageView>
 
-                <!-- Título de la sección -->
                 <ImageView fitHeight="28.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@img/tituloPagos.png"/>
@@ -41,57 +44,92 @@
                         <Insets bottom="10.0"/>
                     </VBox.margin>
                 </ImageView>
+
             </children>
         </VBox>
     </top>
 
-    <!-- Zona central: tabla con el listado de pagos -->
+    <!-- Tabla -->
     <center>
-        <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefWidth="800.0"
-              style="-fx-background-color: #18310e;" BorderPane.alignment="TOP_LEFT">
+        <VBox alignment="TOP_CENTER" prefWidth="800.0"
+              style="-fx-background-color: #18310e;">
+
             <children>
-                <!-- Tabla de pagos con columnas para cada campo -->
-                <TableView fx:id="tablaPagos" prefHeight="350.0" prefWidth="800.0"
-                           columnResizePolicy="CONSTRAINED_RESIZE_POLICY"
-                           style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+
+                <TableView fx:id="tablaPagos"
+                           prefHeight="350.0"
+                           prefWidth="800.0"
+                           style="-fx-background-color: transparent;">
+
                     <columns>
-                        <!-- ID del pago -->
-                        <TableColumn fx:id="colIdPago" prefWidth="80.0" text="ID"/>
-                        <!-- ID del socio asociado al pago -->
-                        <TableColumn fx:id="colIdSocio" prefWidth="150.0" text="ID Socio"/>
-                        <!-- Importe de la cuota -->
-                        <TableColumn fx:id="colCuota" prefWidth="150.0" text="Cuota"/>
-                        <!-- Fecha en la que se registró el pago -->
-                        <TableColumn fx:id="colFechaPago" prefWidth="200.0" text="Fecha Pago"/>
-                        <!-- Estado del pago: pagado, pendiente o fallido -->
-                        <TableColumn fx:id="colEstado" prefWidth="220.0" text="Estado"/>
+
+                        <TableColumn fx:id="colIdPago"
+                                     prefWidth="80.0"
+                                     text="ID"/>
+
+                        <TableColumn fx:id="colSocio"
+                                     prefWidth="200.0"
+                                     text="Socio"/>
+
+                        <TableColumn fx:id="colCuota"
+                                     prefWidth="120.0"
+                                     text="Cuota"/>
+
+                        <TableColumn fx:id="colFechaPago"
+                                     prefWidth="180.0"
+                                     text="Fecha Pago"/>
+
+                        <TableColumn fx:id="colEstado"
+                                     prefWidth="150.0"
+                                     text="Estado"/>
+
                     </columns>
+
                     <VBox.margin>
                         <Insets left="5.0" right="5.0" top="5.0"/>
                     </VBox.margin>
+
                 </TableView>
+
             </children>
+
         </VBox>
     </center>
 
-    <!-- Zona inferior: botón para volver al menú principal -->
+    <!-- Botón inferior -->
     <bottom>
         <VBox alignment="CENTER" style="-fx-background-color: #18310e;">
+
             <children>
-                <Button mnemonicParsing="false" style="-fx-background-color: transparent;"
+
+                <Button mnemonicParsing="false"
+                        style="-fx-background-color: transparent;"
                         onAction="#volverAlMenu">
+
                     <graphic>
-                        <ImageView fitHeight="41.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
+
+                        <ImageView fitHeight="41.0"
+                                   fitWidth="178.0"
+                                   pickOnBounds="true"
+                                   preserveRatio="true">
+
                             <image>
                                 <Image url="@img/buttonHome.png"/>
                             </image>
+
                         </ImageView>
+
                     </graphic>
+
                 </Button>
+
             </children>
+
             <padding>
                 <Insets bottom="10.0" top="5.0"/>
             </padding>
+
         </VBox>
     </bottom>
+
 </BorderPane>
