@@ -5,6 +5,7 @@
 <!-- Pantalla de solo visualización: muestra el listado de pagos de los socios -->
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,35 +14,29 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="540.0" prefWidth="800.0"
-            style="-fx-background-color: #18310e;"
-            xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.boxranger.boxranger.controller.PagosController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="800.0" style="-fx-background-color: #18310e;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.boxranger.boxranger.controller.PagosController">
 
     <!-- Zona superior -->
     <top>
-        <VBox alignment="TOP_CENTER" prefWidth="800.0" spacing="5.0"
-              style="-fx-background-color: #18310e; -fx-border-color: black;">
+        <VBox alignment="TOP_CENTER" prefWidth="800.0" spacing="5.0" style="-fx-background-color: #18310e; -fx-border-color: black;">
 
             <children>
 
                 <ImageView fitHeight="70.0" fitWidth="332.0" pickOnBounds="true">
                     <image>
-                        <Image url="@img/logoPrincipal.png"/>
+                        <Image url="@img/logoPrincipal.png" />
                     </image>
                     <VBox.margin>
-                        <Insets top="15.0"/>
+                        <Insets top="15.0" />
                     </VBox.margin>
                 </ImageView>
 
                 <ImageView fitHeight="28.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@img/tituloPagos.png"/>
+                        <Image url="@img/tituloPagos.png" />
                     </image>
                     <VBox.margin>
-                        <Insets bottom="10.0"/>
+                        <Insets bottom="10.0" />
                     </VBox.margin>
                 </ImageView>
 
@@ -51,42 +46,28 @@
 
     <!-- Tabla -->
     <center>
-        <VBox alignment="TOP_CENTER" prefWidth="800.0"
-              style="-fx-background-color: #18310e;">
+        <VBox alignment="TOP_CENTER" prefWidth="800.0" style="-fx-background-color: #18310e;">
 
             <children>
 
-                <TableView fx:id="tablaPagos"
-                           prefHeight="350.0"
-                           prefWidth="800.0"
-                           style="-fx-background-color: transparent;">
+                <TableView fx:id="tablaPagos" prefHeight="350.0" prefWidth="800.0" style="-fx-background-color: transparent;">
 
                     <columns>
 
-                        <TableColumn fx:id="colIdPago"
-                                     prefWidth="80.0"
-                                     text="ID"/>
+                        <TableColumn fx:id="colIdPago" prefWidth="80.0" text="ID" />
 
-                        <TableColumn fx:id="colSocio"
-                                     prefWidth="200.0"
-                                     text="Socio"/>
+                        <TableColumn fx:id="colSocio" prefWidth="200.0" text="Socio" />
 
-                        <TableColumn fx:id="colCuota"
-                                     prefWidth="120.0"
-                                     text="Cuota"/>
+                        <TableColumn fx:id="colCuota" prefWidth="120.0" text="Cuota" />
 
-                        <TableColumn fx:id="colFechaPago"
-                                     prefWidth="180.0"
-                                     text="Fecha Pago"/>
+                        <TableColumn fx:id="colFechaPago" prefWidth="180.0" text="Fecha Pago" />
 
-                        <TableColumn fx:id="colEstado"
-                                     prefWidth="150.0"
-                                     text="Estado"/>
+                        <TableColumn fx:id="colEstado" prefWidth="150.0" text="Estado" />
 
                     </columns>
 
                     <VBox.margin>
-                        <Insets left="5.0" right="5.0" top="5.0"/>
+                        <Insets left="5.0" right="5.0" top="5.0" />
                     </VBox.margin>
 
                 </TableView>
@@ -102,31 +83,29 @@
 
             <children>
 
-                <Button mnemonicParsing="false"
-                        style="-fx-background-color: transparent;"
-                        onAction="#volverAlMenu">
+                <Button mnemonicParsing="false" onAction="#volverAlMenu" style="-fx-background-color: transparent;">
 
                     <graphic>
 
-                        <ImageView fitHeight="41.0"
-                                   fitWidth="178.0"
-                                   pickOnBounds="true"
-                                   preserveRatio="true">
+                        <ImageView fitHeight="41.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true">
 
                             <image>
-                                <Image url="@img/buttonHome.png"/>
+                                <Image url="@img/buttonHome.png" />
                             </image>
 
                         </ImageView>
 
                     </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
 
                 </Button>
 
             </children>
 
             <padding>
-                <Insets bottom="10.0" top="5.0"/>
+                <Insets bottom="10.0" top="5.0" />
             </padding>
 
         </VBox>

@@ -156,8 +156,7 @@ Vista (FXML)  →  Controlador  →  DAO  →  Base de Datos
 ### Pagos
 ![Pagos](docs/capturas/pagos.png)
 
-> 📌 Para añadir las capturas: crea la carpeta `docs/capturas/` en la raíz del repositorio,
-> haz capturas con `Cmd + Shift + 4` en Mac y guárdalas con los nombres indicados.
+
 
 ---
 
