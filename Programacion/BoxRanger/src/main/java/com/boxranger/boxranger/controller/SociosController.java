@@ -19,9 +19,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * Controlador de la pantalla de gestión de socios.
+ * Gestiona el CRUD completo de socios: listar, añadir, editar y eliminar.
+ * Se comunica con la base de datos a través de SocioDAO.
+ */
 public class SociosController {
 
-    @FXML private TableView<Socio> tablaSocios;
+    // Columnas de la tabla de socios
     @FXML private TableColumn<Socio, Integer> colIdSocio;
     @FXML private TableColumn<Socio, String> colNombre;
     @FXML private TableColumn<Socio, String> colApellidos;
@@ -31,6 +36,8 @@ public class SociosController {
     @FXML private TableColumn<Socio, String> colFecha_alta;
     @FXML private TableColumn<Socio, String> colFecha_baja;
 
+    // Tabla y campos del formulario
+    @FXML private TableView<Socio> tablaSocios;
     @FXML private TextField txtNombre;
     @FXML private TextField txtApellidos;
     @FXML private TextField txtDNI;
@@ -39,63 +46,59 @@ public class SociosController {
     @FXML private DatePicker txtFechaAlta;
     @FXML private DatePicker txtFechaBaja;
 
+    /** DAO para acceder a los datos de socios en la base de datos */
     private final SocioDAO socioDAO = new SocioDAO();
+
+    /** Socio actualmente seleccionado en la tabla */
     private Socio socioSeleccionado;
 
+    /**
+     * Metodo de inicialización que se ejecuta automáticamente al cargar la pantalla.
+     * Configura las columnas de la tabla y carga los datos desde la base de datos.
+     */
     @FXML
     public void initialize() {
+        // Configura cada columna con el campo correspondiente del objeto Socio
         colIdSocio.setCellValueFactory(data ->
                 new javafx.beans.property.SimpleIntegerProperty(
-                        data.getValue().getIdSocio()
-                ).asObject()
-        );
+                        data.getValue().getIdSocio()).asObject());
 
         colNombre.setCellValueFactory(data ->
                 new javafx.beans.property.SimpleStringProperty(
-                        data.getValue().getNombre()
-                )
-        );
+                        data.getValue().getNombre()));
 
         colApellidos.setCellValueFactory(data ->
                 new javafx.beans.property.SimpleStringProperty(
-                        data.getValue().getApellidos()
-                )
-        );
+                        data.getValue().getApellidos()));
 
         colDNI.setCellValueFactory(data ->
                 new javafx.beans.property.SimpleStringProperty(
-                        data.getValue().getDNI()
-                )
-        );
+                        data.getValue().getDNI()));
 
         colEmail.setCellValueFactory(data ->
                 new javafx.beans.property.SimpleStringProperty(
-                        data.getValue().getEmail()
-                )
-        );
+                        data.getValue().getEmail()));
 
         colTelefono.setCellValueFactory(data ->
                 new javafx.beans.property.SimpleStringProperty(
-                        data.getValue().getTelefono()
-                )
-        );
+                        data.getValue().getTelefono()));
 
         colFecha_alta.setCellValueFactory(data ->
                 new javafx.beans.property.SimpleStringProperty(
-                        data.getValue().getFecha_alta()
-                )
-        );
+                        data.getValue().getFecha_alta()));
 
         colFecha_baja.setCellValueFactory(data ->
                 new javafx.beans.property.SimpleStringProperty(
-                        data.getValue().getFecha_baja()
-                )
-        );
+                        data.getValue().getFecha_baja()));
 
         cargarTabla();
         configurarSeleccionTabla();
     }
 
+    /**
+     * Configura el listener de selección de la tabla.
+     * Al seleccionar un socio, rellena automáticamente el formulario con sus datos.
+     */
     private void configurarSeleccionTabla() {
         tablaSocios.getSelectionModel().selectedItemProperty().addListener((obs, anterior, nuevo) -> {
             if (nuevo != null) {
@@ -105,6 +108,10 @@ public class SociosController {
         });
     }
 
+    /**
+     * Rellena los campos del formulario con los datos del socio seleccionado.
+     * @param socio socio cuyos datos se mostrarán en el formulario
+     */
     private void rellenarCampos(Socio socio) {
         txtNombre.setText(socio.getNombre());
         txtApellidos.setText(socio.getApellidos());
@@ -112,30 +119,33 @@ public class SociosController {
         txtEmail.setText(socio.getEmail());
         txtTelefono.setText(socio.getTelefono());
 
+        // Convierte el String de fecha a LocalDate para el DatePicker
         txtFechaAlta.setValue(
                 socio.getFecha_alta() != null && !socio.getFecha_alta().isBlank()
-                        ? LocalDate.parse(socio.getFecha_alta())
-                        : null
-        );
+                        ? LocalDate.parse(socio.getFecha_alta()) : null);
 
         txtFechaBaja.setValue(
                 socio.getFecha_baja() != null && !socio.getFecha_baja().isBlank()
-                        ? LocalDate.parse(socio.getFecha_baja())
-                        : null
-        );
+                        ? LocalDate.parse(socio.getFecha_baja()) : null);
     }
 
+    /**
+     * Carga todos los socios desde la base de datos y los muestra en la tabla.
+     */
     private void cargarTabla() {
         ObservableList<Socio> lista =
                 FXCollections.observableArrayList(socioDAO.listarSocios());
         tablaSocios.setItems(lista);
     }
 
+    /**
+     * Añade un nuevo socio a la base de datos con los datos del formulario.
+     * Valida los campos obligatorios antes de insertar.
+     * @param event evento del botón Añadir
+     */
     @FXML
     private void anadir(ActionEvent event) {
-        if (!validarCamposObligatorios()) {
-            return;
-        }
+        if (!validarCamposObligatorios()) return;
 
         Socio socio = new Socio(
                 0,
@@ -155,6 +165,10 @@ public class SociosController {
         tablaSocios.getSelectionModel().clearSelection();
     }
 
+    /**
+     * Elimina el socio seleccionado en la tabla de la base de datos.
+     * @param event evento del botón Eliminar
+     */
     @FXML
     private void eliminar(ActionEvent event) {
         Socio socio = tablaSocios.getSelectionModel().getSelectedItem();
@@ -171,6 +185,10 @@ public class SociosController {
         tablaSocios.getSelectionModel().clearSelection();
     }
 
+    /**
+     * Actualiza los datos del socio seleccionado con los valores del formulario.
+     * @param event evento del botón Editar
+     */
     @FXML
     private void editar(ActionEvent event) {
         if (socioSeleccionado == null) {
@@ -178,9 +196,7 @@ public class SociosController {
             return;
         }
 
-        if (!validarCamposObligatorios()) {
-            return;
-        }
+        if (!validarCamposObligatorios()) return;
 
         socioSeleccionado.setNombre(txtNombre.getText().trim());
         socioSeleccionado.setApellidos(txtApellidos.getText().trim());
@@ -188,11 +204,9 @@ public class SociosController {
         socioSeleccionado.setEmail(txtEmail.getText().trim());
         socioSeleccionado.setTelefono(txtTelefono.getText().trim());
         socioSeleccionado.setFecha_alta(
-                txtFechaAlta.getValue() != null ? txtFechaAlta.getValue().toString() : null
-        );
+                txtFechaAlta.getValue() != null ? txtFechaAlta.getValue().toString() : null);
         socioSeleccionado.setFecha_baja(
-                txtFechaBaja.getValue() != null ? txtFechaBaja.getValue().toString() : null
-        );
+                txtFechaBaja.getValue() != null ? txtFechaBaja.getValue().toString() : null);
 
         socioDAO.actualizarSocio(socioSeleccionado);
         cargarTabla();
@@ -201,30 +215,33 @@ public class SociosController {
         tablaSocios.getSelectionModel().clearSelection();
     }
 
+    /**
+     * Valida que los campos obligatorios del formulario estén rellenos.
+     * @return true si todos los campos obligatorios tienen valor, false si falta alguno
+     */
     private boolean validarCamposObligatorios() {
         if (txtNombre.getText() == null || txtNombre.getText().isBlank()) {
             mostrarAlerta("El nombre es obligatorio.");
             return false;
         }
-
         if (txtApellidos.getText() == null || txtApellidos.getText().isBlank()) {
             mostrarAlerta("Los apellidos son obligatorios.");
             return false;
         }
-
         if (txtDNI.getText() == null || txtDNI.getText().isBlank()) {
             mostrarAlerta("El DNI es obligatorio.");
             return false;
         }
-
         if (txtFechaAlta.getValue() == null) {
             mostrarAlerta("La fecha de alta es obligatoria.");
             return false;
         }
-
         return true;
     }
 
+    /**
+     * Limpia todos los campos del formulario.
+     */
     private void limpiarCampos() {
         txtNombre.clear();
         txtApellidos.clear();
@@ -235,6 +252,10 @@ public class SociosController {
         txtFechaBaja.setValue(null);
     }
 
+    /**
+     * Muestra una alerta de tipo WARNING con el mensaje indicado.
+     * @param mensaje texto a mostrar en la alerta
+     */
     private void mostrarAlerta(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Aviso");
@@ -243,12 +264,15 @@ public class SociosController {
         alert.showAndWait();
     }
 
+    /**
+     * Navega de vuelta a la pantalla principal del menú.
+     * @param event evento del botón Menú Principal
+     */
     @FXML
     private void volverAlMenu(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/boxranger/boxranger/BoxRanger-view.fxml")
-            );
+                    getClass().getResource("/com/boxranger/boxranger/BoxRanger-view.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));

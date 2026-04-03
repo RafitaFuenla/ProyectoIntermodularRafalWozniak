@@ -9,8 +9,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase DAO (Data Access Object) para gestionar las operaciones
+ * de base de datos relacionadas con los pagos de los socios del box.
+ */
 public class PagoDAO {
 
+    /**
+     * Obtiene todos los pagos registrados en la base de datos.
+     * @return lista de objetos Pago con todos los registros
+     */
     public List<Pago> listarPagos() {
         List<Pago> lista = new ArrayList<>();
         String sql = "SELECT * FROM Pagos";
@@ -20,6 +28,7 @@ public class PagoDAO {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
+            // Recorre cada fila del resultado y crea un objeto Pago
             while (rs.next()) {
                 Pago p = new Pago(
                         rs.getInt("idPago"),
@@ -28,7 +37,6 @@ public class PagoDAO {
                         rs.getString("fecha_pago"),
                         rs.getString("estado")
                 );
-
                 lista.add(p);
             }
 
@@ -39,6 +47,11 @@ public class PagoDAO {
         return lista;
     }
 
+    /**
+     * Inserta un nuevo pago en la base de datos.
+     * El estado puede ser: pagado, pendiente o fallido.
+     * @param pago objeto Pago con los datos a insertar
+     */
     public void insertarPago(Pago pago) {
         String sql = "INSERT INTO Pagos (idSocio, cuota, fecha_pago, estado) VALUES (?,?,?,?)";
 
@@ -58,6 +71,10 @@ public class PagoDAO {
         }
     }
 
+    /**
+     * Elimina un pago de la base de datos según su ID.
+     * @param pago objeto Pago a eliminar
+     */
     public void eliminarPago(Pago pago) {
         String sql = "DELETE FROM Pagos WHERE idPago = ?";
 
@@ -66,7 +83,6 @@ public class PagoDAO {
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setInt(1, pago.getIdPago());
-
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -74,6 +90,10 @@ public class PagoDAO {
         }
     }
 
+    /**
+     * Actualiza los datos de un pago existente en la base de datos.
+     * @param pago objeto Pago con los datos actualizados
+     */
     public void actualizarPago(Pago pago) {
         String sql = "UPDATE Pagos SET idSocio=?, cuota=?, fecha_pago=?, estado=? WHERE idPago = ?";
 

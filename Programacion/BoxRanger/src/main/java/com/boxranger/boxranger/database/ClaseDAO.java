@@ -9,8 +9,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase DAO (Data Access Object) para gestionar las operaciones
+ * de base de datos relacionadas con las clases del box.
+ */
 public class ClaseDAO {
 
+    /**
+     * Obtiene todas las clases registradas en la base de datos.
+     * @return lista de objetos Clase con todos los registros
+     */
     public List<Clase> listarClases() {
         List<Clase> lista = new ArrayList<>();
         String sql = "SELECT * FROM Clases";
@@ -20,6 +28,7 @@ public class ClaseDAO {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
+            // Recorre cada fila del resultado y crea un objeto Clase
             while (rs.next()) {
                 Clase c = new Clase(
                         rs.getInt("idClase"),
@@ -29,7 +38,6 @@ public class ClaseDAO {
                         rs.getString("hora_fin"),
                         rs.getInt("max_atletas")
                 );
-
                 lista.add(c);
             }
 
@@ -40,6 +48,10 @@ public class ClaseDAO {
         return lista;
     }
 
+    /**
+     * Inserta una nueva clase en la base de datos.
+     * @param clase objeto Clase con los datos a insertar
+     */
     public void insertarClase(Clase clase) {
         String sql = "INSERT INTO Clases (idEntrenador, nombre, hora_inicio, hora_fin, max_atletas) VALUES (?,?,?,?,?)";
 
@@ -60,6 +72,10 @@ public class ClaseDAO {
         }
     }
 
+    /**
+     * Elimina una clase de la base de datos según su ID.
+     * @param clase objeto Clase a eliminar
+     */
     public void eliminarClase(Clase clase) {
         String sql = "DELETE FROM Clases WHERE idClase = ?";
 
@@ -68,7 +84,6 @@ public class ClaseDAO {
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setInt(1, clase.getIdClase());
-
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -76,6 +91,10 @@ public class ClaseDAO {
         }
     }
 
+    /**
+     * Actualiza los datos de una clase existente en la base de datos.
+     * @param clase objeto Clase con los datos actualizados
+     */
     public void actualizarClase(Clase clase) {
         String sql = "UPDATE Clases SET idEntrenador=?, nombre=?, hora_inicio=?, hora_fin=?, max_atletas=? WHERE idClase = ?";
 
