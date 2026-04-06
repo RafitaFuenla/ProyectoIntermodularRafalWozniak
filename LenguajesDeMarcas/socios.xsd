@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="socios">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="socio" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="nombre" type="xs:string"/>
+                            <xs:element name="apellidos" type="xs:string"/>
+                            <xs:element name="dni" type="xs:string"/>
+                            <xs:element name="email" type="xs:string"/>
+                            <xs:element name="telefono" type="xs:string"/>
+                            <xs:element name="fecha_alta" type="xs:date"/>
+                            <xs:element name="fecha_baja" type="xs:string" minOccurs="0"/>
+                        </xs:sequence>
+                        <xs:attribute name="id" type="xs:integer" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

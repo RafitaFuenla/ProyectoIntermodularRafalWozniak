@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<socios xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="socios.xsd">
+    <socio id="1">
+        <nombre>Ana</nombre>
+        <apellidos>López García</apellidos>
+        <dni>11111111A</dni>
+        <email>ana@gmail.com</email>
+        <telefono>611111111</telefono>
+        <fecha_alta>2025-01-10</fecha_alta>
+        <fecha_baja></fecha_baja>
+    </socio>
+    <socio id="2">
+        <nombre>Luis</nombre>
+        <apellidos>Pérez Martín</apellidos>
+        <dni>22222222B</dni>
+        <email>lui@gmail.com</email>
+        <telefono>622222222</telefono>
+        <fecha_alta>2025-02-15</fecha_alta>
+        <fecha_baja></fecha_baja>
+    </socio>
+    <socio id="3">
+        <nombre>Sofía</nombre>
+        <apellidos>Ramírez Torres</apellidos>
+        <dni>33333333C</dni>
+        <email>sofia@gmail.com</email>
+        <telefono>633333333</telefono>
+        <fecha_alta>2025-03-01</fecha_alta>
+        <fecha_baja></fecha_baja>
+    </socio>
+    <socio id="4">
+        <nombre>Pedro</nombre>
+        <apellidos>Gómez Sánchez</apellidos>
+        <dni>44444444D</dni>
+        <email>pedro@gmail.com</email>
+        <telefono>644444444</telefono>
+        <fecha_alta>2025-01-20</fecha_alta>
+        <fecha_baja></fecha_baja>
+    </socio>
+    <socio id="5">
+        <nombre>Lucía</nombre>
+        <apellidos>Fernández Ruiz</apellidos>
+        <dni>55555555E</dni>
+        <email>lucia@gmail.com</email>
+        <telefono>655555555</telefono>
+        <fecha_alta>2025-02-10</fecha_alta>
+        <fecha_baja></fecha_baja>
+    </socio>
+    <socio id="6">
+        <nombre>Marios</nombre>
+        <apellidos>Pérez Martín</apellidos>
+        <dni>11111111A</dni>
+        <email>ana@gmail.com</email>
+        <telefono>611111111</telefono>
+        <fecha_alta>2025-01-10</fecha_alta>
+        <fecha_baja></fecha_baja>
+    </socio>
+</socios>
