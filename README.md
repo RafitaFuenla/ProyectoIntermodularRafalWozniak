@@ -1,48 +1,42 @@
-# 🥊 BoxRanger — Gestión de Box de CrossFit
+# BoxRanger - Gestión de Box de CrossFit
 
 ## Descripción
 
-BoxRanger es una aplicación de escritorio desarrollada en Java con JavaFX para la gestión integral de un box de CrossFit. Permite administrar socios, consultar entrenadores, clases y pagos desde una interfaz visual intuitiva.
+BoxRanger es una aplicación de escritorio en Java con JavaFX para gestionar un box de CrossFit. Desde ella se pueden administrar socios, consultar entrenadores, ver clases y controlar el estado de los pagos.
 
-Este proyecto ha sido desarrollado como **Proyecto Intermodular de 1º de DAM** integrando los conocimientos de múltiples módulos: Bases de Datos, Programación, Lenguajes de Marcas, Sistemas Informáticos, Entornos de Desarrollo y MPO.
-
----
-
-## 🎯 Problema que resuelve
-
-Un box de CrossFit necesita gestionar de forma centralizada:
-- El alta, baja y modificación de socios
-- La consulta de entrenadores y sus especialidades
-- Los horarios y clases disponibles
-- El seguimiento del estado de pagos de los socios
-
-BoxRanger centraliza toda esta información en una aplicación de escritorio conectada a una base de datos MySQL.
+Es el Proyecto Intermodular de 1º de DAM, así que integra cosas de varios módulos: Bases de Datos, Programación, Lenguajes de Marcas, Sistemas Informáticos, Entornos de Desarrollo y MPO.
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+## Qué problema resuelve
 
-| Tecnología | Versión | Uso |
+Un box de CrossFit necesita llevar el control de sus socios, saber qué entrenadores tiene y qué clases hay disponibles, y también saber quién ha pagado y quién no. BoxRanger junta todo eso en una sola aplicación conectada a una base de datos MySQL.
+
+---
+
+## Tecnologías utilizadas
+
+| Tecnología | Versión | Para qué se usa |
 |---|---|---|
 | Java (Amazon Corretto) | 21 | Lenguaje principal |
 | JavaFX | 21.0.6 | Interfaz gráfica |
-| FXML + SceneBuilder | 21 | Diseño de vistas |
+| FXML + SceneBuilder | 21 | Diseño de las vistas |
 | MySQL (MariaDB via XAMPP) | 10.4 | Base de datos |
 | JDBC (MySQL Connector) | 8.0.33 | Conexión Java-BD |
 | Maven | 3.x | Gestión de dependencias |
 | Git + GitHub | — | Control de versiones |
-| IntelliJ IDEA | — | IDE de desarrollo |
+| IntelliJ IDEA | — | IDE |
 
 ---
 
-## 📁 Estructura del repositorio
+## Estructura del repositorio
 
 ```
 BoxRanger/
 ├── BaseDatos/               # Módulo 0484 – Bases de Datos
 │   ├── diagramas/           # Diagrama E/R y Modelo Relacional
 │   ├── scripts/             # Scripts SQL de creación, datos y consultas
-│   └── README.md            # Documentación del módulo
+│   └── README.md
 │
 ├── Programacion/            # Módulo 0485 – Programación
 │   └── BoxRanger/           # Proyecto Java/JavaFX
@@ -53,35 +47,35 @@ BoxRanger/
 │       │       │   ├── database/      # DAOs y conexión JDBC
 │       │       │   └── modelo/        # Clases entidad
 │       │       └── resources/         # FXML e imágenes
-│       └── pom.xml          # Configuración Maven
+│       └── pom.xml
 │
 ├── LenguajesDeMarcas/       # Módulo 0373 – Lenguajes de Marcas
-│   ├── datos.xml            # Exportación de datos en XML
-│   ├── esquema.xsd          # Esquema de validación XSD
-│   └── docs/                # Evidencias de validación
+│   ├── datos.xml
+│   ├── esquema.xsd
+│   └── docs/
 │
 ├── Sistemas/                # Módulo 0483 – Sistemas Informáticos
-│   └── informe-tecnico.md   # Informe del entorno de ejecución
+│   └── informe-tecnico.md
 │
-├── MPO/                     # MPO – Ampliación de Programación
-│   └── README.md            # Documentación de mejoras y arquitectura
+├── MPO/                     # Ampliación de Programación
+│   └── README.md
 │
-├── Empleabilidad/           # Módulo 1709 – Empleabilidad
+├── Empleabilidad/           # Módulo 1709
 │   └── perfil-profesional.md
 │
-└── README.md                # Este archivo
+└── README.md
 ```
 
 ---
 
-## ⚙️ Instalación y ejecución
+## Cómo ejecutarlo
 
-### Requisitos previos
+### Requisitos
 
-- Java 21 (Amazon Corretto recomendado)
-- XAMPP con MySQL/MariaDB activo en puerto 8012
+- Java 21 (Amazon Corretto)
+- XAMPP con MySQL activo en el puerto 8012
 - Maven 3.x
-- IntelliJ IDEA (recomendado)
+- IntelliJ IDEA
 
 ### Pasos
 
@@ -90,41 +84,41 @@ BoxRanger/
 git clone https://github.com/tu-usuario/BoxRanger.git
 ```
 
-2. Importa el proyecto en IntelliJ IDEA como proyecto Maven.
+2. Ábrelo en IntelliJ IDEA como proyecto Maven.
 
-3. Abre XAMPP y arranca el servicio **MySQL**.
+3. Arranca el servicio MySQL desde XAMPP.
 
-4. Importa la base de datos ejecutando en phpMyAdmin o MySQL Workbench:
+4. Importa la base de datos. Puedes hacerlo desde phpMyAdmin o MySQL Workbench ejecutando estos scripts en orden:
 ```
 BaseDatos/scripts/ScriptCreacionBBDD.sql
 BaseDatos/scripts/ScriptDatosBBDD.sql
 ```
 
-5. Verifica que la conexión en `ConexionDB.java` coincide con tu configuración:
+5. Comprueba que los datos de conexión en `ConexionDB.java` coinciden con tu configuración:
 ```java
 private static final String url = "jdbc:mysql://127.0.0.1:8012/BoxRanger";
 private static final String usuario = "root";
 private static final String contrasena = "";
 ```
 
-6. Ejecuta la clase `Launcher.java` como clase principal.
+6. Ejecuta `Launcher.java` como clase principal.
 
 ---
 
-## 🖥️ Funcionalidades
+## Funcionalidades
 
-| Sección | Funcionalidad |
+| Sección | Qué puedes hacer |
 |---|---|
-| **Socios** | Listar, añadir, editar y eliminar socios |
-| **Entrenadores** | Consultar entrenadores y especialidades |
-| **Clases** | Consultar clases y horarios disponibles |
-| **Pagos** | Consultar pagos y estados (pagado/pendiente/fallido) |
+| Socios | Listar, añadir, editar y eliminar socios |
+| Entrenadores | Consultar entrenadores y sus especialidades |
+| Clases | Ver clases y horarios disponibles |
+| Pagos | Consultar pagos y su estado (pagado / pendiente / fallido) |
 
 ---
 
-## 🏗️ Arquitectura del proyecto
+## Arquitectura
 
-El proyecto sigue el patrón **MVC (Modelo-Vista-Controlador)** con una capa adicional de acceso a datos (DAO):
+El proyecto usa el patrón MVC con una capa DAO para acceder a la base de datos:
 
 ```
 Vista (FXML)  →  Controlador  →  DAO  →  Base de Datos
@@ -132,19 +126,19 @@ Vista (FXML)  →  Controlador  →  DAO  →  Base de Datos
   JavaFX          Modelo (entidades Java)
 ```
 
-- **Modelo:** clases Java que representan las entidades (`Socio`, `Entrenador`, `Clase`, `Pago`, `Inscripcion`)
+- **Modelo:** clases que representan las entidades (`Socio`, `Entrenador`, `Clase`, `Pago`, `Inscripcion`)
 - **Vista:** archivos FXML diseñados con SceneBuilder
-- **Controlador:** clases Java que gestionan los eventos de la interfaz
-- **DAO:** clases que encapsulan las consultas SQL mediante JDBC
+- **Controlador:** gestiona los eventos de la interfaz
+- **DAO:** encapsula las consultas SQL con JDBC
 
 ---
 
-## 📸 Capturas
+## Capturas
 
 ### Menú Principal
 ![Menú Principal](docs/capturas/menu-principal.png)
 
-### Gestión de Socios
+### Socios
 ![Socios](docs/capturas/socios.png)
 
 ### Entrenadores
@@ -156,17 +150,15 @@ Vista (FXML)  →  Controlador  →  DAO  →  Base de Datos
 ### Pagos
 ![Pagos](docs/capturas/pagos.png)
 
+---
 
+## Autor
+
+Rafal Wozniak Bebenek — 1º DAM Virtual — Prometeo by The Power  
+GitHub: https://github.com/RafitaFuenla/ProyectoIntermodularRafalWozniak.git
 
 ---
 
-## 👨‍💻 Autor
+## Licencia
 
-**Rafal Wozniak Bebenek** — 1º DAM Virtual — Prometeo by The Power  
-GitHub: https://github.com/RafitaFuenla/
-
----
-
-## 📄 Licencia
-
-Proyecto educativo desarrollado para el Proyecto Intermodular de 1º DAM.
+Proyecto educativo para el Intermodular de 1º DAM.
