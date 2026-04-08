@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<socios xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="socios.xsd">
+
+    <socio id="1">
+        <nombre>Ana</nombre>
+        <apellidos>López García</apellidos>
+        <dni>1234</dni>
+        <email>anaSINarroba.com</email>
+        <telefono>912345678</telefono>
+        <fecha_alta>2025-01-10</fecha_alta>
+    </socio>
+
+    <socio id="2">
+        <nombre>L</nombre>
+        <apellidos>Pérez Martín</apellidos>
+        <dni>22222222B</dni>
+        <email>luis@gmail.com</email>
+        <telefono>622222222</telefono>
+        <fecha_alta>no-es-una-fecha</fecha_alta>
+    </socio>
+
+</socios>

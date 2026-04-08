@@ -1,59 +1,22 @@
 # MPO — Ampliación de Programación
 
-## Qué se evalúa en este módulo
+## De qué va este módulo
 
-En Programación se valora que la aplicación funcione.
-En el MPO se valora cómo está construida: que el código esté organizado y sea fácil de mantener o ampliar en el futuro.
-
----
-
-## Mejora aplicada: Arquitectura MVC + DAO
-
-La mejora principal que he aplicado es separar el código en capas usando los patrones MVC (Modelo-Vista-Controlador) y DAO (Data Access Object).
-
-La idea es sencilla: "divide y vencerás". Si todo el código está junto en una sola clase, cualquier cambio pequeño puede romper cosas que no tienen nada que ver. Separándolo en capas, cada parte tiene su función y no interfiere con las demás.
-
-Por ejemplo, si en el futuro se quisiera cambiar MySQL por otra base de datos, solo habría que tocar los DAOs. El resto del proyecto no se vería afectado. Lo mismo si se quisiera cambiar la interfaz: solo se cambian las vistas y los controladores.
+En Programación se valora que la app funcione. En el MPO se valora cómo está construida por dentro, que el código esté ordenado y que si alguien lo coge en el futuro pueda entenderlo sin volverse loco.
 
 ---
 
-## Arquitectura del proyecto
+## Qué he hecho
 
-```
-Vista (FXML)
-     |
-     v
-Controlador  ------>  DAO  ------>  Base de Datos (MySQL)
-     |                  |
-     v                  v
-  Eventos          Consultas SQL (JDBC)
-     |
-     v
-  Modelo (clases Java)
-```
+La mejora principal que he aplicado es separar el código en capas usando MVC (Modelo-Vista-Controlador) y DAO (Data Access Object).
 
-Cada capa tiene una responsabilidad concreta:
+La idea es básicamente no mezclar todo en el mismo sitio. Si el código de la interfaz, la lógica y la base de datos están todos juntos en una clase, cuando algo falla no sabes dónde mirar y cualquier cambio pequeño puede romper cosas que no tienen nada que ver.
 
-- Modelo: clases Java que representan los datos (Socio, Entrenador, Clase, Pago)
-- Vista: archivos FXML con el diseño de la interfaz
-- Controlador: gestiona lo que ocurre cuando el usuario interactúa con la app
-- DAO: es la única parte que habla con la base de datos, aquí están todas las consultas SQL
+Separándolo en capas cada parte hace solo una cosa. Por ejemplo, si en el futuro se quisiera cambiar MySQL por otra base de datos, solo habría que tocar los DAOs. El resto no se toca. Lo mismo con la interfaz.
 
 ---
 
-## Principios de POO aplicados
-
-Encapsulación: los atributos de las clases del modelo son privados y se accede a ellos mediante getters y setters.
-
-Responsabilidad única: cada clase hace una sola cosa. SocioDAO solo gestiona el acceso a datos de socios, SociosController solo gestiona los eventos de esa pantalla, y Socio solo representa los datos de un socio.
-
-Constructores: cada entidad tiene un constructor que inicializa todos sus atributos correctamente.
-
-Relaciones entre clases: las clases se relacionan de forma coherente con el modelo de datos, igual que en la base de datos.
-
----
-
-## Estructura del código
+## Cómo está organizado el código
 
 ```
 src/main/java/com/boxranger/boxranger/
@@ -77,8 +40,32 @@ src/main/java/com/boxranger/boxranger/
     └── PagosController.java
 ```
 
+Cada capa tiene su función:
+
+- **modelo/** — las clases Java que representan los datos: Socio, Entrenador, Clase, Pago
+- **database/** — todo lo que tiene que ver con la base de datos. Los DAOs son los únicos que lanzan consultas SQL
+- **controller/** — gestiona lo que pasa cuando el usuario hace clic en algo
+
 ---
 
-## Conclusión
+## POO que he aplicado
 
-Gracias a esta arquitectura, añadir algo nuevo al proyecto (por ejemplo una sección de reservas) solo requiere crear su clase modelo, su DAO y su controlador, sin tocar nada de lo que ya existe.
+**Encapsulación** — los atributos de las clases del modelo son privados y se accede a ellos con getters y setters. Al principio me parecía un rollo hacer tantos métodos pero tiene sentido para controlar cómo se accede a los datos.
+
+**Responsabilidad única** — cada clase hace una cosa. SocioDAO solo gestiona datos de socios, SociosController solo gestiona los eventos de esa pantalla, y Socio solo representa los datos.
+
+**Constructores** — cada entidad tiene un constructor que inicializa bien todos sus atributos. Tuve algún problema con esto al principio porque me olvidé el `this.` en las asignaciones y los ids me salían siempre a 0.
+
+**Relaciones entre clases** — las clases se relacionan igual que en la base de datos, lo que hace que todo tenga coherencia.
+
+---
+
+## Diagrama UML
+
+El diagrama está en `docs/uml/diagramaUML.png` y en la carpeta de MPO.
+
+---
+
+## Lo que más me ha costado
+
+Entender el patrón DAO al principio fue lo más difícil. No veía para qué separar tanto las cosas si al final hacen lo mismo. Pero cuando empecé a hacer los controladores y vi que podía llamar a `socioDAO.obtenerTodos()` sin preocuparme de cómo funcionaba por dentro, empecé a entenderlo.
